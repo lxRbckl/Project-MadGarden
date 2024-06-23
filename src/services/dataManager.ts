@@ -47,6 +47,13 @@ export default class dataManager {
    }
 
 
+   async setData(): Promise<void> {
+
+
+
+   }
+
+
    async getData(): Promise<Data> {
 
       var data: Data = {};
@@ -120,7 +127,7 @@ export default class dataManager {
 
                // >
                
-               return data; // remove
+               return data; // beta; REMOVE WHEN DONE
 
             }
 
