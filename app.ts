@@ -25,9 +25,9 @@ import dataManager from './src/services/dataManager';
 
 
    let x = await dataHandler.getData();
-
+   
    console.log(x['TypeScript']);
-   console.log('------++++++------');
+   console.log('----');
    console.log(x['demo']);
 
 })();

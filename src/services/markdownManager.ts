@@ -51,7 +51,7 @@ export default class markdownManager {
       var currentLanguage: string = '';
       for (const line of readme.split('\n')) {
 
-         Object.entries(this._propertyRegex).map(([prop, regex]) => {
+         for (const [prop, regex] of Object.entries(this._propertyRegex)) {
 
             let result: string[] = line.split(regex);
 
@@ -74,7 +74,7 @@ export default class markdownManager {
 
             }
 
-         });
+         }
 
       }
 
