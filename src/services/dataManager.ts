@@ -8,6 +8,7 @@ import {
    Data,
    Subject,
    Resources,
+   SubjectKeys,
    Descriptions,
    ConstructorParams
 
@@ -63,9 +64,22 @@ export default class dataManager {
 
    async setData(data: Data): Promise<void> {
 
+      // fetch additional resources <
       let resources: Resources = await axiosGet(this._elementResourcesURL);
       let descriptions: Descriptions = await axiosGet(this._elementDescriptionURL);
-      console.log(data); // remove
+
+      // >
+
+      // iterate (subject, (projects, ecosystem)) <
+      for (const [subject, props] of Object.entries(data)) {
+
+         console.log('-', subject);
+         console.log('--', props);
+         
+
+      }
+
+      // >
 
    }
 
@@ -146,7 +160,7 @@ export default class dataManager {
 
                // >
                
-               return data; // beta; REMOVE WHEN DONE
+               return data; // REMOVE WHEN DONE
 
             }
 

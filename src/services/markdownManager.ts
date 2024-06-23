@@ -1,9 +1,11 @@
 // import <
+import { axiosGet } from 'lxrbckl';
 import { 
 
    Properties,
    PropertyKeys,
    PropertyRegex,
+   MarkdownBuilds,
    ConstructorParams
 
 } from '../typings/markdownManager';
@@ -38,6 +40,7 @@ export default class markdownManager {
 
    // async setMarkdown(): string {
 
+   //    let markdownBuilds: MarkdownBuilds = await axiosGet(this._markdownBuildsURL);
 
 
    // }

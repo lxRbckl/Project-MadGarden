@@ -12,6 +12,13 @@ export interface ConstructorParams {
 }
 
 
+export interface MarkdownBuilds {
+
+   [key: string]: string;
+
+}
+
+
 export interface PropertyRegex {
 
    'subjects' : RegExp;
