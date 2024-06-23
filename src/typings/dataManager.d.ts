@@ -15,28 +15,26 @@ export interface ConstructorParams {
 }
 
 
-export interface Topic {
+export interface Project {
 
-   'projects'?: string[];
-   'resources'?: string[];
-   'description'?: string;
+   'repo': string;
+   'owner': string;
+   'branch': string;
 
 }
 
 
 export interface Subject {
 
-   'projects'?: string[];
-   'ecosystem'?: string[];
-   'description'?: string;
+   'projects'?: Project[];
+   'ecosystem'?: string[][];
 
 }
 
 
 export interface Data {
 
-   'subjects'?: Subect[];
-   'topics'?: Topic[];
+   [key: string]: Subject;
 
 }
 

@@ -2,20 +2,8 @@
 import { octokit, axiosGet } from 'lxrbckl';
 
 import markdownManager from './markdownManager';
-import { 
-   
-   Properties,
-   PropertyKeys
-
-} from '../typings/markdownManager';
-import { 
-   
-   Data,
-   Topic,
-   Subject,
-   ConstructorParams
-
-} from '../typings/dataManager';
+import { Properties } from '../typings/markdownManager';
+import { Data, Subject, ConstructorParams } from '../typings/dataManager';
 
 // >
 
@@ -23,14 +11,12 @@ import {
 export default class dataManager {
 
 
+   private _octokit: octokit;
+   private _markdownHandler: markdownManager;
+
    private readonly _readmeFileName: string;
    private readonly _githubUsersURL: string;
    private readonly _markdownBuildsURL: string;
-
-   private _octokit: octokit;
-   private readonly templateTopic: Topic;
-   private readonly templateSubject: Subject;
-   private _markdownHandler: markdownManager;
 
 
    constructor({
@@ -46,20 +32,6 @@ export default class dataManager {
       this._githubUsersURL = githubUsersURL;
       this._markdownBuildsURL = markdownBuildsURL;
 
-      this.templateTopic = {
-
-         'projects' : [],
-         'resources' : [],
-         'description' : ''
-
-      };
-      this.templateSubject = {
-
-         'projects' : [],
-         'ecosystem' : [],
-         'description' : ''
-
-      };
       this._octokit = new octokit({
 
          owner : octokitOwner,
@@ -72,13 +44,13 @@ export default class dataManager {
 
       });
 
-
    }
 
 
    async getData(): Promise<Data> {
 
       var data: Data = {};
+      var properties: Properties = {};
 
       // fetch and iterate through users <
       // let users: string[] = await axiosGet(this._githubUsersURL);
@@ -121,20 +93,33 @@ export default class dataManager {
 
                });
 
-               let props: Properties = this._markdownHandler.getProperties(readme);
+               properties = this._markdownHandler.getProperties(readme);               
+               for (const [subject, topic] of Object.entries(properties)) {
 
-               console.log(props); // remove
+                  if (!(Object.keys(data).includes(subject))) {
 
-               // TODO
-               // we got props back but we still need to use the interfaces from
-               // dataManager.d.ts in order to map the project to BOTH the subject(s)
-               // and the topic(s). use the interface's keywords and add the project
-               // in the current iteration to his key for each subject AND topic.
-               // ---
-               // we may consider indeed adding another function solely responsible
-               // for adding our properties to data and returning it here.
+                     data[subject] = {
 
+                        'projects' : [],
+                        'ecosystem' : []
 
+                     };
+                     
+                  }
+
+                  data[subject]['ecosystem']?.push(topic);
+                  data[subject]['projects']?.push({
+
+                     'repo' : repo,
+                     'owner' : user,
+                     'branch' : branch
+
+                  });
+
+               }
+
+               // >
+               
                return data; // remove
 
             }

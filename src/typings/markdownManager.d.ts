@@ -9,13 +9,6 @@ export interface ConstructorParams {
 
    markdownBuildsURL: string
 
-};
-
-
-export interface Properties {
-
-   [key: string]: string[];
-
 }
 
 
@@ -23,6 +16,13 @@ export interface PropertyRegex {
 
    'subjects' : RegExp;
    'topics' : RegExp;
+
+}
+
+
+export interface Properties {
+
+   [key: string]: string[];
 
 }
 
