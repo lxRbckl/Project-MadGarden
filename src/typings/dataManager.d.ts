@@ -17,6 +17,20 @@ export interface ConstructorParams {
 }
 
 
+export interface Resources {
+
+   [key: string]: string;
+
+}
+
+
+export interface Descriptions {
+
+   [key: string]: string;
+
+}
+
+
 export interface Project {
 
    'repo': string;

@@ -3,7 +3,15 @@ import { octokit, axiosGet } from 'lxrbckl';
 
 import markdownManager from './markdownManager';
 import { Properties } from '../typings/markdownManager';
-import { Data, Subject, ConstructorParams } from '../typings/dataManager';
+import { 
+   
+   Data,
+   Subject,
+   Resources,
+   Descriptions,
+   ConstructorParams
+
+} from '../typings/dataManager';
 
 // >
 
@@ -17,6 +25,8 @@ export default class dataManager {
    private readonly _readmeFileName: string;
    private readonly _githubUsersURL: string;
    private readonly _markdownBuildsURL: string;
+   private readonly _elementResourcesURL: string;
+   private readonly _elementDescriptionURL: string;
 
 
    constructor({
@@ -24,13 +34,17 @@ export default class dataManager {
       octokitOwner,
       octokitToken,
       githubUsersURL,
-      markdownBuildsURL
+      markdownBuildsURL,
+      elementResourcesURL,
+      elementDescriptionURL
 
    }: ConstructorParams) {
 
       this._readmeFileName = 'README.md';
       this._githubUsersURL = githubUsersURL;
       this._markdownBuildsURL = markdownBuildsURL;
+      this._elementResourcesURL = elementResourcesURL;
+      this._elementDescriptionURL = elementDescriptionURL;
 
       this._octokit = new octokit({
 
@@ -47,9 +61,11 @@ export default class dataManager {
    }
 
 
-   async setData(): Promise<void> {
+   async setData(data: Data): Promise<void> {
 
-      
+      let resources: Resources = await axiosGet(this._elementResourcesURL);
+      let descriptions: Descriptions = await axiosGet(this._elementDescriptionURL);
+      console.log(data); // remove
 
    }
 
