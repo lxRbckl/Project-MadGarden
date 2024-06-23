@@ -11,6 +11,8 @@ export interface ConstructorParams {
    octokitToken: string;
    githubUsersURL: string;
    markdownBuildsURL: string;
+   elementResourcesURL: string;
+   elementDescriptionURL: string;
 
 }
 

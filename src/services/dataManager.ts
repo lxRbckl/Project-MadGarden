@@ -49,7 +49,7 @@ export default class dataManager {
 
    async setData(): Promise<void> {
 
-
+      
 
    }
 
@@ -103,6 +103,7 @@ export default class dataManager {
                properties = this._markdownHandler.getProperties(readme);               
                for (const [subject, topic] of Object.entries(properties)) {
 
+                  // if (new subject) <
                   if (!(Object.keys(data).includes(subject))) {
 
                      data[subject] = {
@@ -113,6 +114,8 @@ export default class dataManager {
                      };
                      
                   }
+
+                  // >
 
                   data[subject]['ecosystem']?.push(topic);
                   data[subject]['projects']?.push({
