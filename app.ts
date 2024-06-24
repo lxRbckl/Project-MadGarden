@@ -28,9 +28,11 @@ const urlElementDescriptions: string = 'https://raw.githubusercontent.com/lxRbck
    var dataHandler: dataManager = new dataManager();
    var octokitHandler: octokitManager = new octokitManager({
 
+      excludeBranchMain : true,
       octokitOwner : octokitOwner,
       octokitToken : octokitToken,
-      githubUsersURL : githubUsersURL
+      readmeFileName : 'README.md',
+      githubUsers : await axiosGet(githubUsersURL)
 
    });
    var markdownHandler: markdownManager = new markdownManager({
@@ -48,6 +50,7 @@ const urlElementDescriptions: string = 'https://raw.githubusercontent.com/lxRbck
    // >
 
 
-
+   await octokitHandler.setReadmeArchive();
+   console.log(octokitHandler.getReadmeArchive());
 
 })();

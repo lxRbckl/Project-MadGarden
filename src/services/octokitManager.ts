@@ -12,21 +12,25 @@ export default class octokitManager {
    private _octokit: octokit;
 
    private readonly _octokitOwner: string;
-   private readonly _githubUsersURL: string;
+   private readonly _githubUsers: string[];
    private readonly _readmeFileName: string;
+   private readonly _excludeBranchMain: boolean;
 
 
    constructor({
 
+      githubUsers,
       octokitOwner,
       octokitToken,
-      githubUsersURL
+      readmeFileName,
+      excludeBranchMain
 
    }: ConstructorParams) {
 
+      this._githubUsers = githubUsers;
       this._octokitOwner = octokitOwner;
-      this._readmeFileName = 'README.md';
-      this._githubUsersURL = githubUsersURL;
+      this._readmeFileName = readmeFileName;
+      this._excludeBranchMain = excludeBranchMain;
 
       this._archive = [];
       this._octokit = new octokit({
@@ -117,6 +121,7 @@ export default class octokitManager {
 
             }
 
+            console.log('here'); // remove
             return undefined; // REMOVE WHEN DONE
 
          }
