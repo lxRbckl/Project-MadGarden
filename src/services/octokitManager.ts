@@ -88,9 +88,7 @@ export default class octokitManager {
 
    async setReadmeArchive(): Promise<void> {
 
-      let users: string[] = ['lxRbckl']; // REMOVE WHEN DONE
-      // let users: string[] = axiosGet(this._githubUsersURL); // ADD WHEN DONE
-      for (const user of users) {
+      for (const user of ['lxRbckl']) { // INSERT this._githubUsers
 
          let repos: string[] = await this._getReposFromUser(user);
          for (const repo of repos) {
@@ -121,7 +119,6 @@ export default class octokitManager {
 
             }
 
-            console.log('here'); // remove
             return undefined; // REMOVE WHEN DONE
 
          }
