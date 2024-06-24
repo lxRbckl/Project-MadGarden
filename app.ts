@@ -2,34 +2,52 @@
 
 
 // import <
+import { axiosGet } from 'lxrbckl';
+
 import dataManager from './src/services/dataManager';
+import octokitManager from './src/services/octokitManager';
+import markdownManager from './src/services/markdownManager';
+
+// >
+
+
+// env <
+const octokitOwner: string = 'lxRbckl';
+const octokitToken: string = '';
+const githubUsersURL: string = 'https://raw.githubusercontent.com/lxRbckl/Project-Heimir/V2/src/data/githubUsers.json';
+const urlMarkdownBuilds: string = 'https://raw.githubusercontent.com/lxRbckl/Project-Landscape/main/src/data/markdownBuilds.json';
+const urlElementResources: string = 'https://raw.githubusercontent.com/lxRbckl/Project-Landscape/main/src/data/elementResources.json';
+const urlElementDescriptions: string = 'https://raw.githubusercontent.com/lxRbckl/Project-Landscape/main/src/data/elementDescription.json';
 
 // >
 
 
 (async () => {
 
-   let owner: string = 'lxRbckl';
-   let token: string = '';
-   let githubUsersURL: string = 'https://raw.githubusercontent.com/lxRbckl/Project-Heimir/V2/src/data/githubUsers.json';
-   let markdownBuildsURL: string = 'https://raw.githubusercontent.com/lxRbckl/Project-Landscape/main/src/data/markdownBuilds.json';
-   let elementResourcesURL: string = 'https://raw.githubusercontent.com/lxRbckl/Project-Landscape/main/src/data/elementResources.json';
-   let elementDescriptionURL: string = 'https://raw.githubusercontent.com/lxRbckl/Project-Landscape/main/src/data/elementDescription.json';
+   // init objects <
+   var dataHandler: dataManager = new dataManager();
+   var octokitHandler: octokitManager = new octokitManager({
 
-   let dataHandler: dataManager = new dataManager({
+      octokitOwner : octokitOwner,
+      octokitToken : octokitToken,
+      githubUsersURL : githubUsersURL
 
-      octokitOwner : owner,
-      octokitToken : token,
-      githubUsersURL : githubUsersURL,
-      markdownBuildsURL : markdownBuildsURL,
-      elementResourcesURL : elementResourcesURL,
-      elementDescriptionURL : elementDescriptionURL
+   });
+   var markdownHandler: markdownManager = new markdownManager({
+
+      markdownBuilds : await axiosGet(urlMarkdownBuilds),
+      elementResources : await axiosGet(urlElementResources),
+      elementDescriptions : await axiosGet(urlElementDescriptions),
+
+      propertyTargetIndex : 1,
+      propertyExpectedSize : 3,
+      propertyRegexes : {'topics' : /\[`([^`]*)`\]/, 'subjects' : /\[\*\*`([^`]*)`\*\*\]/}
 
    });
 
+   // >
 
-   // - - - - - - -
-   let x = await dataHandler.getData();
-   dataHandler.setData(x);
+
+
 
 })();

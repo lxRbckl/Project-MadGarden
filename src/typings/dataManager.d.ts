@@ -5,18 +5,6 @@ export type SubjectKeys = 'projects' | 'ecosystem';
 
 
 // interfaces <
-export interface ConstructorParams {
-
-   octokitOwner: string;
-   octokitToken: string;
-   githubUsersURL: string;
-   markdownBuildsURL: string;
-   elementResourcesURL: string;
-   elementDescriptionURL: string;
-
-}
-
-
 export interface Resources {
 
    [key: string]: string;
@@ -33,17 +21,28 @@ export interface Descriptions {
 
 export interface Project {
 
-   'repo': string;
-   'owner': string;
-   'branch': string;
+   'url'?: string;
+   'name'?: string;
+
+}
+
+
+export interface Topic {
+
+   [key: string]: {
+
+      'urls'?: string[];
+      'names'?: string[];
+
+   };
 
 }
 
 
 export interface Subject {
 
+   'ecosystem'?: Topic;
    'projects'?: Project[];
-   'ecosystem'?: string[][];
 
 }
 

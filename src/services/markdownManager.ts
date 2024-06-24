@@ -1,12 +1,12 @@
 // import <
-import { axiosGet } from 'lxrbckl';
 import { 
 
    Properties,
-   PropertyKeys,
-   PropertyRegex,
    MarkdownBuilds,
-   ConstructorParams
+   PropertyRegexes,
+   ElementResources,
+   ConstructorParams,
+   ElementDescriptions
 
 } from '../typings/markdownManager';
 
@@ -15,62 +15,69 @@ import {
 
 export default class markdownManager {
 
+   private readonly _propertyTargetIndex: number;
+   private readonly _propertyExpectedSize: number;
+   private readonly _propertyRegexes: PropertyRegexes;
 
-   private _markdownBuildsURL: string;
-   private _propertyRegex: PropertyRegex;
+   private readonly _markdownBuilds: MarkdownBuilds;
+   private readonly _elementResources: ElementResources;
+   private readonly _elementDescriptions: ElementDescriptions;
 
 
    constructor({
 
-      markdownBuildsURL
+      markdownBuilds,
+      elementResources,
+      elementDescriptions,
+   
+      propertyRegexes,
+      propertyTargetIndex,
+      propertyExpectedSize
 
    }: ConstructorParams) {
 
-      this._markdownBuildsURL = markdownBuildsURL;
+      this._markdownBuilds = markdownBuilds;
+      this._elementResources = elementResources;
+      this._elementDescriptions = elementDescriptions;
 
-      this._propertyRegex = {
-
-         'topics' : /\[`([^`]*)`\]/,
-         'subjects' : /\[\*\*`([^`]*)`\*\*\]/
-
-      };  
+      this._propertyRegexes = propertyRegexes;
+      this._propertyTargetIndex = propertyTargetIndex;
+      this._propertyExpectedSize = propertyExpectedSize;
       
    }
 
 
-   // async setMarkdown(): string {
+   async setMarkdown() {
 
-   //    let markdownBuilds: MarkdownBuilds = await axiosGet(this._markdownBuildsURL);
+      
 
-
-   // }
+   }
 
 
    getProperties(readme: string): Properties {
 
-      const targetIndex: number = 1;
-      const expectedSize: number = 3;
       var properties: Properties = {};
       var currentLanguage: string = '';
       for (const line of readme.split('\n')) {
 
-         for (const [prop, regex] of Object.entries(this._propertyRegex)) {
+         for (const [prop, regex] of Object.entries(this._propertyRegexes)) {
 
             let result: string[] = line.split(regex);
+            let target: string = result[this._propertyTargetIndex]
 
-            if (result.length == expectedSize) {
+            if (result.length == this._propertyExpectedSize) {
 
                switch (prop) {
 
                   case 'subjects':
 
-                     currentLanguage = result[targetIndex];
+                     currentLanguage = target;
                      properties[currentLanguage] = [];
                      break;
 
                   case 'topics': 
                   
-                     properties[currentLanguage].push(result[targetIndex]);
+                     properties[currentLanguage].push(target);
                      break;
 
                }
