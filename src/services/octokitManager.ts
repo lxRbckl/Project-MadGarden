@@ -14,7 +14,8 @@ export default class octokitManager {
    private readonly _octokitOwner: string;
    private readonly _githubUsers: string[];
    private readonly _readmeFileName: string;
-   private readonly _excludeBranchMain: boolean;
+   private readonly _excludeBranches: boolean;
+   private readonly _excludedBranches: string[];
 
 
    constructor({
@@ -23,14 +24,16 @@ export default class octokitManager {
       octokitOwner,
       octokitToken,
       readmeFileName,
-      excludeBranchMain
+      excludeBranches,
+      excludedBranches
 
    }: ConstructorParams) {
 
       this._githubUsers = githubUsers;
       this._octokitOwner = octokitOwner;
       this._readmeFileName = readmeFileName;
-      this._excludeBranchMain = excludeBranchMain;
+      this._excludeBranches = excludeBranches;
+      this._excludedBranches = excludedBranches;
 
       this._archive = [];
       this._octokit = new octokit({
@@ -66,7 +69,12 @@ export default class octokitManager {
 
       });
 
-      return branches;
+      switch (this._excludeBranches) {
+
+         case false: return branches;
+         case true: return branches.filter(b => !(this._excludedBranches.includes(b)));
+
+      }
 
    }
 
@@ -88,7 +96,7 @@ export default class octokitManager {
 
    async setReadmeArchive(): Promise<void> {
 
-      for (const user of ['lxRbckl']) { // INSERT this._githubUsers
+      for (const user of ['lxRbckl']) { // INSERT this._githubUsers WHEN DONE
 
          let repos: string[] = await this._getReposFromUser(user);
          for (const repo of repos) {

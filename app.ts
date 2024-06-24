@@ -28,7 +28,8 @@ const urlElementDescriptions: string = 'https://raw.githubusercontent.com/lxRbck
    var dataHandler: dataManager = new dataManager();
    var octokitHandler: octokitManager = new octokitManager({
 
-      excludeBranchMain : true,
+      excludeBranches : true,
+      excludedBranches : ['main'],
       octokitOwner : octokitOwner,
       octokitToken : octokitToken,
       readmeFileName : 'README.md',
