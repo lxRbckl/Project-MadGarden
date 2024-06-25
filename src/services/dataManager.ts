@@ -35,7 +35,15 @@ export default class dataManager {
 
          }
 
-         
+         // TODO
+         // -- create url above the for loop ...
+         // url is link to project. projects is
+         // repo name and branch combined into
+         // one string, add that to 'projects'.
+         // once done iterate through topics and
+         // follow similar steps as above, for topics
+
+         // this._data[subject]['urls']?.push()
          
          // >
 
