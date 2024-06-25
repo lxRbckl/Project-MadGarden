@@ -1,5 +1,5 @@
 // types <
-// export type PropertyKeys = 'subjects' | 'topics';
+
 
 // >
 

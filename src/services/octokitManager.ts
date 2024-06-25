@@ -1,7 +1,6 @@
 // import <
 import { octokit, axiosGet } from 'lxrbckl';
-import { 
-   
+import {
 
    ConstructorParams,
    IterateReadmeArchiveCallback
@@ -109,7 +108,7 @@ export default class octokitManager {
             for (const b of branches) {
 
                let readme: string = await this._getReadmeFromBranch(r, b);
-               
+
                callback({
 
                   'content' : readme,

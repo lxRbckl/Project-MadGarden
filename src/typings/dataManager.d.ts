@@ -1,48 +1,27 @@
-// typings <
-// export type SubjectKeys = 'projects' | 'ecosystem';
+// types <
+
 
 // >
 
 
 // interfaces <
-export interface Resources {
-
-   [key: string]: string;
-
-}
-
-
-export interface Descriptions {
-
-   [key: string]: string;
-
-}
-
-
-export interface Project {
-
-   'url'?: string;
-   'name'?: string;
-
-}
-
-
 export interface Topic {
 
-   [key: string]: {
-
-      'urls'?: string[];
-      'names'?: string[];
-
-   };
+   'urls'?: string[];
+   'projects'?: string[];
 
 }
 
 
 export interface Subject {
 
-   'ecosystem'?: Topic;
-   'projects'?: Project[];
+   'urls'?: string[];
+   'projects'?: string[];
+   'ecosystem'?: { 
+      
+      [key: string]: Topic 
+   
+   }
 
 }
 
