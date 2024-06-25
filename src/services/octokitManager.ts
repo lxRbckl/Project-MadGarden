@@ -1,6 +1,12 @@
 // import <
 import { octokit, axiosGet } from 'lxrbckl';
-import { Archive, ConstructorParams } from '../typings/octokitManager';
+import { 
+   
+
+   ConstructorParams,
+   IterateReadmeArchiveCallback
+
+} from '../typings/octokitManager';
 
 // >
 
@@ -8,7 +14,6 @@ import { Archive, ConstructorParams } from '../typings/octokitManager';
 export default class octokitManager {
 
 
-   private _archive: Archive;
    private _octokit: octokit;
 
    private readonly _octokitOwner: string;
@@ -35,7 +40,6 @@ export default class octokitManager {
       this._excludeBranches = excludeBranches;
       this._excludedBranches = excludedBranches;
 
-      this._archive = [];
       this._octokit = new octokit({
 
          token : octokitToken,
@@ -94,32 +98,26 @@ export default class octokitManager {
    }
 
 
-   async setReadmeArchive(): Promise<void> {
+   async iterateReadmeArchive(callback: IterateReadmeArchiveCallback) {
 
-      for (const user of ['lxRbckl']) { // INSERT this._githubUsers WHEN DONE
+      for (const u of ['lxRbckl']) { // INSERT this._githubUsers WHEN DONE
 
-         let repos: string[] = await this._getReposFromUser(user);
-         for (const repo of repos) {
+         let repos: string[] = await this._getReposFromUser(u);
+         for (const r of repos) {
 
-            let branches: string[] = await this._getBranchesFromRepo(user, repo);
-            for (const branch of branches) {
+            let branches: string[] = await this._getBranchesFromRepo(u, r);
+            for (const b of branches) {
 
-               let readme: string = await this._octokit.repositoryGet({
-
-                  branch : branch,
-                  repository : repo,
-                  file : this._readmeFileName
-
-               });
-
-               this._archive.push({
+               let readme: string = await this._getReadmeFromBranch(r, b);
+               
+               callback({
 
                   'content' : readme,
                   'filepath' : {
 
-                     'repo' : repo,
-                     'owner' : user,
-                     'branch' : branch
+                     'repo' : r,
+                     'owner' : u,
+                     'branch' : b
 
                   }
 
@@ -134,9 +132,6 @@ export default class octokitManager {
       }
 
    }
-
-
-   getReadmeArchive(): Archive {return this._archive;}
    
 
 }

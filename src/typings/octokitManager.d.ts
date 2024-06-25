@@ -1,5 +1,5 @@
 // types <
-export type Archive = Readme[];
+export type IterateReadmeArchiveCallback = (data: ReadmeData) => void;
 
 // >
 
@@ -26,7 +26,7 @@ export interface ReadmeFilePath {
 }
 
 
-export interface Readme {
+export interface ReadmeData {
 
    'content': string;
    'filepath': ReadmeFilePath;

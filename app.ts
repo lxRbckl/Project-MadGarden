@@ -4,7 +4,9 @@
 // import <
 import { axiosGet } from 'lxrbckl';
 
+
 import dataManager from './src/services/dataManager';
+import { Properties } from './src/typings/markdownManager';0
 import octokitManager from './src/services/octokitManager';
 import markdownManager from './src/services/markdownManager';
 
@@ -38,10 +40,6 @@ const urlElementDescriptions: string = 'https://raw.githubusercontent.com/lxRbck
    });
    var markdownHandler: markdownManager = new markdownManager({
 
-      markdownBuilds : await axiosGet(urlMarkdownBuilds),
-      elementResources : await axiosGet(urlElementResources),
-      elementDescriptions : await axiosGet(urlElementDescriptions),
-
       propertyTargetIndex : 1,
       propertyExpectedSize : 3,
       propertyRegexes : {'topics' : /\[`([^`]*)`\]/, 'subjects' : /\[\*\*`([^`]*)`\*\*\]/}
@@ -51,7 +49,17 @@ const urlElementDescriptions: string = 'https://raw.githubusercontent.com/lxRbck
    // >
 
 
-   await octokitHandler.setReadmeArchive();
-   console.log(octokitHandler.getReadmeArchive());
+   octokitHandler.iterateReadmeArchive((readme) => {
+
+      let properties: Properties = markdownHandler.getPropertiesFromReadme(readme);
+      console.log(properties); // remove
+      
+   });
+
+
+   // markdownBuilds : await axiosGet(urlMarkdownBuilds),
+   // elementResources : await axiosGet(urlElementResources),
+   // elementDescriptions : await axiosGet(urlElementDescriptions),
+
 
 })();

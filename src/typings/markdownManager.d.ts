@@ -1,5 +1,5 @@
 // types <
-export type PropertyKeys = 'subjects' | 'topics';
+// export type PropertyKeys = 'subjects' | 'topics';
 
 // >
 
@@ -7,8 +7,17 @@ export type PropertyKeys = 'subjects' | 'topics';
 // interfaces <
 export interface PropertyRegexes {
 
-   'subjects' : RegExp;
    'topics' : RegExp;
+   'subjects' : RegExp;
+
+}
+
+
+export interface ConstructorParams {
+
+   propertyTargetIndex: number;
+   propertyExpectedSize: number;
+   propertyRegexes: PropertyRegexes;
 
 }
 
@@ -34,11 +43,7 @@ export interface ElementDescriptions {
 }
 
 
-export interface ConstructorParams {
-
-   propertyTargetIndex: number;
-   propertyExpectedSize: number;
-   propertyRegexes: PropertyRegexes;
+export interface SetReadmeParams {
 
    markdownBuilds: MarkdownBuilds;
    elementResources: ElementResources;

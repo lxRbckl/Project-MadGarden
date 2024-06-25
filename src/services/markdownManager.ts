@@ -2,11 +2,9 @@
 import { 
 
    Properties,
-   MarkdownBuilds,
+   SetReadmeParams,
    PropertyRegexes,
-   ElementResources,
-   ConstructorParams,
-   ElementDescriptions
+   ConstructorParams
 
 } from '../typings/markdownManager';
 
@@ -19,26 +17,14 @@ export default class markdownManager {
    private readonly _propertyExpectedSize: number;
    private readonly _propertyRegexes: PropertyRegexes;
 
-   private readonly _markdownBuilds: MarkdownBuilds;
-   private readonly _elementResources: ElementResources;
-   private readonly _elementDescriptions: ElementDescriptions;
-
 
    constructor({
-
-      markdownBuilds,
-      elementResources,
-      elementDescriptions,
    
       propertyRegexes,
       propertyTargetIndex,
       propertyExpectedSize
 
    }: ConstructorParams) {
-
-      this._markdownBuilds = markdownBuilds;
-      this._elementResources = elementResources;
-      this._elementDescriptions = elementDescriptions;
 
       this._propertyRegexes = propertyRegexes;
       this._propertyTargetIndex = propertyTargetIndex;
@@ -47,14 +33,20 @@ export default class markdownManager {
    }
 
 
-   async setMarkdown() {
+   async setReadme({
+
+      markdownBuilds,
+      elementResources,
+      elementDescriptions
+
+   }: SetReadmeParams) {
 
       
 
    }
 
 
-   getProperties(readme: string): Properties {
+   getPropertiesFromReadme(readme: string): Properties {
 
       var properties: Properties = {};
       var currentLanguage: string = '';

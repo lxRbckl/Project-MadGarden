@@ -1,5 +1,5 @@
 // typings <
-export type SubjectKeys = 'projects' | 'ecosystem';
+// export type SubjectKeys = 'projects' | 'ecosystem';
 
 // >
 
