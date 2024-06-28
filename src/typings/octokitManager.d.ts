@@ -11,7 +11,6 @@ export interface ConstructorParams {
    octokitToken: string;
    githubUsers: string[];
    readmeFileName: string;
-   excludeBranches: boolean;
    excludedBranches: string[];
 
 }

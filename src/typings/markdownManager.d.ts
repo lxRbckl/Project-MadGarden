@@ -17,7 +17,10 @@ export interface ConstructorParams {
 
    propertyTargetIndex: number;
    propertyExpectedSize: number;
+   markdownBuilds: MarkdownBuilds;
    propertyRegexes: PropertyRegexes;
+   elementResources: ElementResources;
+   elementDescriptions: ElementDescriptions;
 
 }
 
@@ -39,15 +42,6 @@ export interface ElementResources {
 export interface ElementDescriptions {
 
    [key: string]: string;
-
-}
-
-
-export interface SetReadmeParams {
-
-   markdownBuilds: MarkdownBuilds;
-   elementResources: ElementResources;
-   elementDescriptions: ElementDescriptions;
 
 }
 

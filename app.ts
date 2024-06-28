@@ -31,8 +31,7 @@ const urlElementDescriptions: string = 'https://raw.githubusercontent.com/lxRbck
    var dataHandler: dataManager = new dataManager();
    var octokitHandler: octokitManager = new octokitManager({
 
-      excludeBranches : true,
-      excludedBranches : ['main'],
+      excludedBranches : [],
       octokitOwner : octokitOwner,
       octokitToken : octokitToken,
       readmeFileName : 'README.md',
@@ -43,6 +42,9 @@ const urlElementDescriptions: string = 'https://raw.githubusercontent.com/lxRbck
 
       propertyTargetIndex : 1,
       propertyExpectedSize : 3,
+      markdownBuilds : await axiosGet(urlMarkdownBuilds),
+      elementResources : await axiosGet(urlElementResources),
+      elementDescriptions : await axiosGet(urlElementDescriptions),
       propertyRegexes : {'topics' : /\[`([^`]*)`\]/, 'subjects' : /\[\*\*`([^`]*)`\*\*\]/}
 
    });
@@ -56,13 +58,5 @@ const urlElementDescriptions: string = 'https://raw.githubusercontent.com/lxRbck
       dataHandler.addPropertiesToData(properties, data.filepath);
       
    });
-
-   console.log(dataHandler.getData()); // remove
-
-
-   // markdownBuilds : await axiosGet(urlMarkdownBuilds),
-   // elementResources : await axiosGet(urlElementResources),
-   // elementDescriptions : await axiosGet(urlElementDescriptions),
-
 
 })();

@@ -1,5 +1,5 @@
 // import <
-import { octokit, axiosGet } from 'lxrbckl';
+import { octokit } from 'lxrbckl';
 import {
 
    ConstructorParams,
@@ -15,10 +15,9 @@ export default class octokitManager {
 
    private _octokit: octokit;
 
+   private readonly _users: string[];
    private readonly _octokitOwner: string;
-   private readonly _githubUsers: string[];
    private readonly _readmeFileName: string;
-   private readonly _excludeBranches: boolean;
    private readonly _excludedBranches: string[];
 
 
@@ -28,15 +27,13 @@ export default class octokitManager {
       octokitOwner,
       octokitToken,
       readmeFileName,
-      excludeBranches,
-      excludedBranches
+      excludedBranches,
 
    }: ConstructorParams) {
 
-      this._githubUsers = githubUsers;
+      this._users = githubUsers;
       this._octokitOwner = octokitOwner;
       this._readmeFileName = readmeFileName;
-      this._excludeBranches = excludeBranches;
       this._excludedBranches = excludedBranches;
 
       this._octokit = new octokit({
@@ -72,12 +69,7 @@ export default class octokitManager {
 
       });
 
-      switch (this._excludeBranches) {
-
-         case false: return branches;
-         case true: return branches.filter(b => !(this._excludedBranches.includes(b)));
-
-      }
+      return branches.filter(b => !(this._excludedBranches.includes(b)));
 
    }
 
@@ -99,7 +91,7 @@ export default class octokitManager {
 
    async iterateReadmeArchive(callback: IterateReadmeArchiveCallback): Promise<void> {
 
-      for (const u of ['lxRbckl']) { // INSERT this._githubUsers WHEN DONE
+      for (const u of ['lxRbckl']) { // INSERT this._users WHEN DONE
 
          let repos: string[] = await this._getReposFromUser(u);
          for (const r of repos) {
