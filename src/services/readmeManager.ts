@@ -1,4 +1,5 @@
 // import <
+import { Data } from '../typings/dataManager';
 import { 
 
    Properties,
@@ -8,12 +9,12 @@ import {
    ConstructorParams,
    ElementDescriptions
 
-} from '../typings/markdownManager';
+} from '../typings/readmeManager';
 
 // >
 
 
-export default class markdownManager {
+export default class readmeManager {
 
 
    private readonly _propertyTargetIndex: number;
@@ -45,9 +46,26 @@ export default class markdownManager {
    }
 
 
-   async setReadme() {
+   async publishAllReadme(data: Data) {
 
-      
+      for (const [subject, properties] of Object.entries(data)) {
+
+         // publish subject <
+
+
+         // >
+
+         // iterate (ecosystem) <
+         for (const topic of Object.keys(properties['ecosystem']!)) {
+
+            console.log(topic);
+            console.log(properties['ecosystem']![topic]);
+
+         }
+
+         // >
+
+      }
 
    }
 

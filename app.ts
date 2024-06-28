@@ -4,18 +4,19 @@
 // import <
 import { axiosGet } from 'lxrbckl';
 
-import dataManager from './src/services/dataManager';
-import octokitManager from './src/services/octokitManager';
-import markdownManager from './src/services/markdownManager';
+import { Properties } from './src/typings/readmeManager';
+import { ReadmeData } from './src/typings/octokitManager';
 
-import { Properties } from './src/typings/markdownManager';
-import { ReadmeData, ReadmeFilePath } from './src/typings/octokitManager';
+import dataManager from './src/services/dataManager';
+import readmeManager from './src/services/readmeManager';
+import octokitManager from './src/services/octokitManager';
 
 // >
 
 
 // env <
 const octokitOwner: string = 'lxRbckl';
+const readmeFileName: string = 'README.md';
 const octokitToken: string = '';
 const githubUsersURL: string = 'https://raw.githubusercontent.com/lxRbckl/Project-Heimir/V2/src/data/githubUsers.json';
 const urlMarkdownBuilds: string = 'https://raw.githubusercontent.com/lxRbckl/Project-Landscape/main/src/data/markdownBuilds.json';
@@ -34,11 +35,11 @@ const urlElementDescriptions: string = 'https://raw.githubusercontent.com/lxRbck
       excludedBranches : [],
       octokitOwner : octokitOwner,
       octokitToken : octokitToken,
-      readmeFileName : 'README.md',
+      readmeFileName : readmeFileName,
       githubUsers : await axiosGet(githubUsersURL)
 
    });
-   var markdownHandler: markdownManager = new markdownManager({
+   var markdownHandler: readmeManager = new readmeManager({
 
       propertyTargetIndex : 1,
       propertyExpectedSize : 3,
@@ -52,11 +53,16 @@ const urlElementDescriptions: string = 'https://raw.githubusercontent.com/lxRbck
    // >
 
 
+   // run <
    await octokitHandler.iterateReadmeArchive((data: ReadmeData) => {
       
       let properties: Properties = markdownHandler.getPropertiesFromReadme(data.content);
       dataHandler.addPropertiesToData(properties, data.filepath);
       
    });
+
+   await markdownHandler.publishAllReadme(dataHandler.getData());
+
+   // >
 
 })();

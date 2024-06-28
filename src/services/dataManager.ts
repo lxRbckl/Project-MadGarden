@@ -1,5 +1,5 @@
 // import <
-import { Properties } from '../typings/markdownManager';
+import { Properties } from '../typings/readmeManager';
 import { ReadmeFilePath } from '../typings/octokitManager';
 import { Data, Topic, Subject } from '../typings/dataManager';
 
@@ -11,11 +11,7 @@ export default class dataManager {
    private _data: Data;
 
 
-   constructor() {
-
-      this._data  = {};
-
-   }
+   constructor() {this._data  = {};}
 
 
    addPropertiesToData(properties: Properties, filepath: ReadmeFilePath): void {
@@ -45,7 +41,7 @@ export default class dataManager {
 
          // >
 
-         // iterate (subject->topics) <
+         // iterate (subject->ecosystem) <
          for (const t of topics) {
 
             // if (new topic) <
@@ -62,7 +58,7 @@ export default class dataManager {
 
             // >
 
-            // add subject->topic to data <
+            // add subject->ecosystem->topic to data <
             this._data[subject]['ecosystem']![t]['projects']?.push(project);
             this._data[subject]['ecosystem']![t]['urls']?.push(filepath['url']);
 
