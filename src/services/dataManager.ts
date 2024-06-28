@@ -45,7 +45,7 @@ export default class dataManager {
 
          // >
 
-         // iterate (topics) <
+         // iterate (subject->topics) <
          for (const t of topics) {
 
             // if (new topic) <
@@ -62,8 +62,11 @@ export default class dataManager {
 
             // >
 
+            // add subject->topic to data <
             this._data[subject]['ecosystem']![t]['projects']?.push(project);
             this._data[subject]['ecosystem']![t]['urls']?.push(filepath['url']);
+
+            // >
 
          }
 
