@@ -1,7 +1,7 @@
 // import <
-import { Data, Subject } from '../typings/dataManager';
 import { Properties } from '../typings/markdownManager';
 import { ReadmeFilePath } from '../typings/octokitManager';
+import { Data, Topic, Subject } from '../typings/dataManager';
 
 // >
 
@@ -13,7 +13,7 @@ export default class dataManager {
 
    constructor() {
 
-      this._data = {};
+      this._data  = {};
 
    }
 
@@ -35,20 +35,37 @@ export default class dataManager {
 
          }
 
-         // TODO
-         // -- create url above the for loop ...
-         // url is link to project. projects is
-         // repo name and branch combined into
-         // one string, add that to 'projects'.
-         // once done iterate through topics and
-         // follow similar steps as above, for topics
-
-         // this._data[subject]['urls']?.push()
-         
          // >
 
-         // if (new topic) <
+         // add subject to data <
+         const project: string = `${filepath['repo']} ${filepath['branch']}`;
 
+         this._data[subject]['urls']?.push(filepath['url']);
+         this._data[subject]['projects']?.push(project);
+
+         // >
+
+         // iterate (topics) <
+         for (const t of topics) {
+
+            // if (new topic) <
+            if (!(Object.keys(this._data[subject]['ecosystem']!).includes(t))) {
+
+               this._data[subject]['ecosystem']![t] = {
+
+                  'urls' : [],
+                  'projects' : []
+
+               } as Topic;
+
+            }
+
+            // >
+
+            this._data[subject]['ecosystem']![t]['projects']?.push(project);
+            this._data[subject]['ecosystem']![t]['urls']?.push(filepath['url']);
+
+         }
 
          // >
 

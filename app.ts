@@ -57,8 +57,8 @@ const urlElementDescriptions: string = 'https://raw.githubusercontent.com/lxRbck
       
    });
 
+   console.log(dataHandler.getData()); // remove
 
-   // console.log(dataHandler.getData()); // remove
 
    // markdownBuilds : await axiosGet(urlMarkdownBuilds),
    // elementResources : await axiosGet(urlElementResources),

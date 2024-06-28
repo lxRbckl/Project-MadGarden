@@ -97,7 +97,7 @@ export default class octokitManager {
    }
 
 
-   async iterateReadmeArchive(callback: IterateReadmeArchiveCallback) {
+   async iterateReadmeArchive(callback: IterateReadmeArchiveCallback): Promise<void> {
 
       for (const u of ['lxRbckl']) { // INSERT this._githubUsers WHEN DONE
 
@@ -116,7 +116,8 @@ export default class octokitManager {
 
                      'repo' : r,
                      'owner' : u,
-                     'branch' : b
+                     'branch' : b,
+                     'url' : `https://github.com/${u}/${r}/blob/${b}/README.md`
 
                   }
 

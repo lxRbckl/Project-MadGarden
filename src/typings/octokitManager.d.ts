@@ -19,6 +19,7 @@ export interface ConstructorParams {
 
 export interface ReadmeFilePath {
 
+   'url': string;
    'repo': string;
    'owner': string;
    'branch': string;
