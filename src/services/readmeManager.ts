@@ -17,6 +17,7 @@ import {
 export default class readmeManager {
 
 
+   private readonly _source: string;
    private readonly _propertyTargetIndex: number;
    private readonly _propertyExpectedSize: number;
    private readonly _markdownBuilds: MarkdownBuilds;
@@ -27,6 +28,7 @@ export default class readmeManager {
 
    constructor({
    
+      source,
       markdownBuilds,
       propertyRegexes,
       elementResources,
@@ -36,6 +38,7 @@ export default class readmeManager {
 
    }: ConstructorParams) {
 
+      this._source = source;
       this._markdownBuilds = markdownBuilds;
       this._propertyRegexes = propertyRegexes;
       this._elementResources = elementResources;
@@ -48,18 +51,24 @@ export default class readmeManager {
 
    async publishAllReadme(data: Data) {
 
+      var projects: string = '';
+      var ecosystem: string = '';
+      var resources: string = '';
+      var description: string = '';
       for (const [subject, properties] of Object.entries(data)) {
 
          // publish subject <
-
+         
 
          // >
 
          // iterate (ecosystem) <
          for (const topic of Object.keys(properties['ecosystem']!)) {
 
-            console.log(topic);
-            console.log(properties['ecosystem']![topic]);
+            // publish subject->ecosystem->topic <
+
+
+            // >
 
          }
 
@@ -79,7 +88,7 @@ export default class readmeManager {
          for (const [prop, regex] of Object.entries(this._propertyRegexes)) {
 
             let result: string[] = line.split(regex);
-            let target: string = result[this._propertyTargetIndex]
+            let target: string = result[this._propertyTargetIndex]?.replace(' ', '-');
 
             if (result.length == this._propertyExpectedSize) {
 
@@ -103,7 +112,7 @@ export default class readmeManager {
          }
 
       }
-
+   
       return properties;
 
    }

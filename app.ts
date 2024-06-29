@@ -39,12 +39,13 @@ const urlElementDescriptions: string = 'https://raw.githubusercontent.com/lxRbck
       githubUsers : await axiosGet(githubUsersURL)
 
    });
-   var markdownHandler: readmeManager = new readmeManager({
+   var readmeHandler: readmeManager = new readmeManager({
 
       propertyTargetIndex : 1,
       propertyExpectedSize : 3,
       markdownBuilds : await axiosGet(urlMarkdownBuilds),
       elementResources : await axiosGet(urlElementResources),
+      source: 'https://github.com/lxRbckl/lxRbckl/tree/main/',
       elementDescriptions : await axiosGet(urlElementDescriptions),
       propertyRegexes : {'topics' : /\[`([^`]*)`\]/, 'subjects' : /\[\*\*`([^`]*)`\*\*\]/}
 
@@ -56,12 +57,12 @@ const urlElementDescriptions: string = 'https://raw.githubusercontent.com/lxRbck
    // run <
    await octokitHandler.iterateReadmeArchive((data: ReadmeData) => {
       
-      let properties: Properties = markdownHandler.getPropertiesFromReadme(data.content);
+      let properties: Properties = readmeHandler.getPropertiesFromReadme(data.content);
       dataHandler.addPropertiesToData(properties, data.filepath);
       
    });
 
-   await markdownHandler.publishAllReadme(dataHandler.getData());
+   await readmeHandler.publishAllReadme(dataHandler.getData());
 
    // >
 

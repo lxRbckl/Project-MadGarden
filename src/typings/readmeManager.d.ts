@@ -15,6 +15,7 @@ export interface PropertyRegexes {
 
 export interface ConstructorParams {
 
+   source: string;
    propertyTargetIndex: number;
    propertyExpectedSize: number;
    markdownBuilds: MarkdownBuilds;
