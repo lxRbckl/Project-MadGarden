@@ -18,6 +18,7 @@ import octokitManager from './src/services/octokitManager';
 const octokitOwner: string = 'lxRbckl';
 const readmeFileName: string = 'README.md';
 const octokitToken: string = '';
+const publishSource: string = 'https://github.com/lxRbckl/lxRbckl/tree/main/';
 const githubUsersURL: string = 'https://raw.githubusercontent.com/lxRbckl/Project-Heimir/V2/src/data/githubUsers.json';
 const urlMarkdownBuilds: string = 'https://raw.githubusercontent.com/lxRbckl/Project-Landscape/main/src/data/markdownBuilds.json';
 const urlElementResources: string = 'https://raw.githubusercontent.com/lxRbckl/Project-Landscape/main/src/data/elementResources.json';
@@ -43,10 +44,10 @@ const urlElementDescriptions: string = 'https://raw.githubusercontent.com/lxRbck
 
       propertyTargetIndex : 1,
       propertyExpectedSize : 3,
-      markdownBuilds : await axiosGet(urlMarkdownBuilds),
-      elementResources : await axiosGet(urlElementResources),
-      source: 'https://github.com/lxRbckl/lxRbckl/tree/main/',
-      elementDescriptions : await axiosGet(urlElementDescriptions),
+      // markdownBuilds : await axiosGet(urlMarkdownBuilds),
+      // elementResources : await axiosGet(urlElementResources),
+      publishSource : publishSource,
+      // elementDescriptions : await axiosGet(urlElementDescriptions),
       propertyRegexes : {'topics' : /\[`([^`]*)`\]/, 'subjects' : /\[\*\*`([^`]*)`\*\*\]/}
 
    });

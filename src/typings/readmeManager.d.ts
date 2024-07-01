@@ -1,5 +1,6 @@
 // types <
-
+// export type IterateReadmeArchiveCallback = (data: ReadmeData) => void;
+export type PublishAllReadmeCallback = () => void;
 
 // >
 
@@ -15,13 +16,10 @@ export interface PropertyRegexes {
 
 export interface ConstructorParams {
 
-   source: string;
+   publishSource: string;
    propertyTargetIndex: number;
    propertyExpectedSize: number;
-   markdownBuilds: MarkdownBuilds;
    propertyRegexes: PropertyRegexes;
-   elementResources: ElementResources;
-   elementDescriptions: ElementDescriptions;
 
 }
 

@@ -3,11 +3,9 @@ import { Data } from '../typings/dataManager';
 import { 
 
    Properties,
-   MarkdownBuilds,
    PropertyRegexes,
-   ElementResources,
    ConstructorParams,
-   ElementDescriptions
+   PublishAllReadmeCallback
 
 } from '../typings/readmeManager';
 
@@ -17,65 +15,26 @@ import {
 export default class readmeManager {
 
 
-   private readonly _source: string;
+   private readonly _publishSource: string;
    private readonly _propertyTargetIndex: number;
    private readonly _propertyExpectedSize: number;
-   private readonly _markdownBuilds: MarkdownBuilds;
    private readonly _propertyRegexes: PropertyRegexes;
-   private readonly _elementResources: ElementResources;
-   private readonly _elementDescriptions: ElementDescriptions;
 
 
    constructor({
    
-      source,
-      markdownBuilds,
+      publishSource,
       propertyRegexes,
-      elementResources,
       propertyTargetIndex,
-      elementDescriptions,
       propertyExpectedSize
 
    }: ConstructorParams) {
 
-      this._source = source;
-      this._markdownBuilds = markdownBuilds;
+      this._publishSource = publishSource;
       this._propertyRegexes = propertyRegexes;
-      this._elementResources = elementResources;
-      this._elementDescriptions = elementDescriptions;
       this._propertyTargetIndex = propertyTargetIndex;
       this._propertyExpectedSize = propertyExpectedSize;
       
-   }
-
-
-   async publishAllReadme(data: Data) {
-
-      var projects: string = '';
-      var ecosystem: string = '';
-      var resources: string = '';
-      var description: string = '';
-      for (const [subject, properties] of Object.entries(data)) {
-
-         // publish subject <
-         
-
-         // >
-
-         // iterate (ecosystem) <
-         for (const topic of Object.keys(properties['ecosystem']!)) {
-
-            // publish subject->ecosystem->topic <
-
-
-            // >
-
-         }
-
-         // >
-
-      }
-
    }
 
 
@@ -114,6 +73,36 @@ export default class readmeManager {
       }
    
       return properties;
+
+   }
+
+
+   async publishAllReadme(data: Data, callback: PublishAllReadmeCallback) {
+
+      var projects: string = '';
+      var ecosystem: string = '';
+      var resources: string = '';
+      var description: string = '';
+      for (const [subject, properties] of Object.entries(data)) {
+
+         // publish subject <
+         
+
+         // >
+
+         // iterate (subject->ecosystem) <
+         for (const topic of Object.keys(properties['ecosystem']!)) {
+
+            // publish topic <
+
+
+            // >
+
+         }
+
+         // >
+
+      }
 
    }
 
