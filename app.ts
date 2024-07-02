@@ -44,10 +44,6 @@ const urlElementDescriptions: string = 'https://raw.githubusercontent.com/lxRbck
 
       propertyTargetIndex : 1,
       propertyExpectedSize : 3,
-      // markdownBuilds : await axiosGet(urlMarkdownBuilds),
-      // elementResources : await axiosGet(urlElementResources),
-      publishSource : publishSource,
-      // elementDescriptions : await axiosGet(urlElementDescriptions),
       propertyRegexes : {'topics' : /\[`([^`]*)`\]/, 'subjects' : /\[\*\*`([^`]*)`\*\*\]/}
 
    });
@@ -56,14 +52,40 @@ const urlElementDescriptions: string = 'https://raw.githubusercontent.com/lxRbck
 
 
    // run <
+   const markdownBuilds: {[key: string]: string} = await axiosGet(urlMarkdownBuilds);
+   const elementResources: {[key: string]: string} = await axiosGet(urlElementResources);
+   const elementDescription: {[key: string]: string} = await axiosGet(urlElementDescriptions);
+
    await octokitHandler.iterateReadmeArchive((data: ReadmeData) => {
-      
-      let properties: Properties = readmeHandler.getPropertiesFromReadme(data.content);
-      dataHandler.addPropertiesToData(properties, data.filepath);
+
+      dataHandler.addPropertiesToData(
+
+         readmeHandler.getPropertiesFromReadme(data.content),
+         data.filepath
+
+      )
       
    });
 
-   await readmeHandler.publishAllReadme(dataHandler.getData());
+   // await readmeHandler.publishAllReadme(dataHandler.getData());
+   for (const [subject, properties] of Object.entries(dataHandler.getData())) {
+
+      // publish subject <
+      console.log(subject); // remove
+      console.log(properties);
+
+      // >
+
+      // iterate (subject->ecosystem) <
+      for (const topic of Object.keys(properties['ecosystem']!)) {
+
+         // console.log(topic); // remove
+
+      }
+
+      // >
+      
+   }
 
    // >
 

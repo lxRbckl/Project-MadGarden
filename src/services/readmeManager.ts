@@ -5,7 +5,7 @@ import {
    Properties,
    PropertyRegexes,
    ConstructorParams,
-   PublishAllReadmeCallback
+   setReadmeFromPropertiesParams
 
 } from '../typings/readmeManager';
 
@@ -15,7 +15,6 @@ import {
 export default class readmeManager {
 
 
-   private readonly _publishSource: string;
    private readonly _propertyTargetIndex: number;
    private readonly _propertyExpectedSize: number;
    private readonly _propertyRegexes: PropertyRegexes;
@@ -23,14 +22,12 @@ export default class readmeManager {
 
    constructor({
    
-      publishSource,
       propertyRegexes,
       propertyTargetIndex,
       propertyExpectedSize
 
    }: ConstructorParams) {
 
-      this._publishSource = publishSource;
       this._propertyRegexes = propertyRegexes;
       this._propertyTargetIndex = propertyTargetIndex;
       this._propertyExpectedSize = propertyExpectedSize;
@@ -77,30 +74,24 @@ export default class readmeManager {
    }
 
 
-   async publishAllReadme(data: Data, callback: PublishAllReadmeCallback) {
+   async setReadmeFromProperties({
 
-      var projects: string = '';
-      var ecosystem: string = '';
-      var resources: string = '';
-      var description: string = '';
-      for (const [subject, properties] of Object.entries(data)) {
+      type,
+      topic,
+      subject,
+      properties
 
-         // publish subject <
+   }: setReadmeFromPropertiesParams) {
+
+      switch (type) {
+
+         case ('subject'):
+
+            console.log();
          
+         case ('topic'):
 
-         // >
-
-         // iterate (subject->ecosystem) <
-         for (const topic of Object.keys(properties['ecosystem']!)) {
-
-            // publish topic <
-
-
-            // >
-
-         }
-
-         // >
+            console.log();
 
       }
 

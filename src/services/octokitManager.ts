@@ -13,7 +13,7 @@ import {
 export default class octokitManager {
 
 
-   private _octokit: octokit;
+   public _octokit: octokit;
 
    private readonly _users: string[];
    private readonly _octokitOwner: string;
