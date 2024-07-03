@@ -76,24 +76,27 @@ export default class readmeManager {
 
    async setReadmeFromProperties({
 
-      type,
       topic,
       subject,
       properties
 
    }: setReadmeFromPropertiesParams) {
 
-      switch (type) {
+      // if (subject->topic) <
+      // else if (subject) <
+      if (topic) {
 
-         case ('subject'):
 
-            console.log();
-         
-         case ('topic'):
-
-            console.log();
 
       }
+
+      else if (subject) {
+
+
+
+      }
+
+      // >
 
    }
 

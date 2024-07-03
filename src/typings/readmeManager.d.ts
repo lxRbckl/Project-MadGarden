@@ -31,10 +31,9 @@ export interface Properties {
 
 export interface setReadmeFromPropertiesParams {
 
-   topic: string;
+   topic?: string;
    subject: string;
    properties: Properties;
-   type: 'subject' | 'topic';
 
 }
 
