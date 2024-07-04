@@ -18,7 +18,7 @@ import octokitManager from './src/services/octokitManager';
 const octokitOwner: string = 'lxRbckl';
 const readmeFileName: string = 'README.md';
 const octokitToken: string = '';
-const publishSource: string = 'https://github.com/lxRbckl/lxRbckl/tree/main/';
+const publishSource: string = 'https://github.com/lxRbckl/lxRbckl/tree/main';
 const githubUsersURL: string = 'https://raw.githubusercontent.com/lxRbckl/Project-Heimir/V2/src/data/githubUsers.json';
 const urlMarkdownBuilds: string = 'https://raw.githubusercontent.com/lxRbckl/Project-Landscape/main/src/data/markdownBuilds.json';
 const urlElementResources: string = 'https://raw.githubusercontent.com/lxRbckl/Project-Landscape/main/src/data/elementResources.json';
@@ -70,20 +70,25 @@ const urlElementDescriptions: string = 'https://raw.githubusercontent.com/lxRbck
    // await readmeHandler.publishAllReadme(dataHandler.getData());
    for (const [subject, properties] of Object.entries(dataHandler.getData())) {
 
+      console.log(properties); // remove
+
       // publish subject <
-      console.log(subject); // remove
-      console.log(properties);
+      console.log(subject);
+      // console.log(properties);
 
       // >
 
       // iterate (subject->ecosystem) <
       for (const topic of Object.keys(properties['ecosystem']!)) {
 
-         // console.log(topic); // remove
+         // console.log(topic);
+         console.log(topic);
 
       }
 
       // >
+
+      console.log(' ');
       
    }
 

@@ -1,5 +1,4 @@
 // import <
-import { Data } from '../typings/dataManager';
 import { 
 
    Properties,
@@ -80,23 +79,25 @@ export default class readmeManager {
       subject,
       properties
 
-   }: setReadmeFromPropertiesParams) {
+   }: setReadmeFromPropertiesParams): Promise<string> {
 
       // if (subject->topic) <
       // else if (subject) <
       if (topic) {
 
-
+         
 
       }
 
       else if (subject) {
 
-
+         
 
       }
 
       // >
+
+      return 'ok';
 
    }
 

@@ -8,13 +8,20 @@ import { Data, Topic, Subject } from '../typings/dataManager';
 
 export default class dataManager {
 
+
    private _data: Data;
 
 
    constructor() {this._data  = {};}
 
 
-   addPropertiesToData(properties: Properties, filepath: ReadmeFilePath): void {
+   addPropertiesToData(
+      
+      publishSource: string,
+      properties: Properties, 
+      filepath: ReadmeFilePath
+   
+   ): void {
 
       for (const [subject, topics] of Object.entries(properties)) {
 
@@ -25,7 +32,8 @@ export default class dataManager {
 
                'urls' : [],
                'projects' : [],
-               'ecosystem' : {}
+               'ecosystem' : {},
+               'url' : `${publishSource}/${subject}/README.md`
 
             } as Subject;
 
@@ -50,7 +58,8 @@ export default class dataManager {
                this._data[subject]['ecosystem']![t] = {
 
                   'urls' : [],
-                  'projects' : []
+                  'projects' : [],
+                  'url' : `${publishSource}/${subject}/${t}/README.md`
 
                } as Topic;
 
