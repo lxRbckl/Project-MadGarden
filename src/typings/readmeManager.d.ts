@@ -1,3 +1,9 @@
+// imports <
+import { Topic, Subject } from './dataManager';
+
+// >
+
+
 // types <
 
 
@@ -9,6 +15,13 @@ export interface PropertyRegexes {
 
    'topics' : RegExp;
    'subjects' : RegExp;
+
+}
+
+
+export interface GetPropertiesParams {
+
+   readme: string;
 
 }
 
@@ -33,7 +46,7 @@ export interface setReadmeFromPropertiesParams {
 
    topic?: string;
    subject: string;
-   properties: Properties;
+   properties: Topic | Subject;
 
 }
 

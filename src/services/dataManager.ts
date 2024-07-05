@@ -1,7 +1,12 @@
 // import <
-import { Properties } from '../typings/readmeManager';
-import { ReadmeFilePath } from '../typings/octokitManager';
-import { Data, Topic, Subject } from '../typings/dataManager';
+import { 
+   
+   Data, 
+   Topic, 
+   Subject,
+   AddPropertiesParams
+
+} from '../typings/dataManager';
 
 // >
 
@@ -15,13 +20,13 @@ export default class dataManager {
    constructor() {this._data  = {};}
 
 
-   addPropertiesToData(
-      
-      publishSource: string,
-      properties: Properties, 
-      filepath: ReadmeFilePath
-   
-   ): void {
+   addProperties({
+
+      properties,
+      publishSource,
+      readmeProjectPath
+
+   }: AddPropertiesParams): void {
 
       for (const [subject, topics] of Object.entries(properties)) {
 
@@ -42,9 +47,9 @@ export default class dataManager {
          // >
 
          // add subject to data <
-         const project: string = `${filepath['repo']} ${filepath['branch']}`;
+         const project: string = `${readmeProjectPath['repo']} ${readmeProjectPath['branch']}`;
 
-         this._data[subject]['urls']?.push(filepath['url']);
+         this._data[subject]['urls']?.push(readmeProjectPath['url']);
          this._data[subject]['projects']?.push(project);
 
          // >
@@ -69,7 +74,7 @@ export default class dataManager {
 
             // add subject->ecosystem->topic to data <
             this._data[subject]['ecosystem']![t]['projects']?.push(project);
-            this._data[subject]['ecosystem']![t]['urls']?.push(filepath['url']);
+            this._data[subject]['ecosystem']![t]['urls']?.push(readmeProjectPath['url']);
 
             // >
 

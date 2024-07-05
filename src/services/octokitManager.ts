@@ -3,6 +3,7 @@ import { octokit } from 'lxrbckl';
 import {
 
    ConstructorParams,
+   PublishReadmeParams,
    IterateReadmeArchiveCallback
 
 } from '../typings/octokitManager';
@@ -13,7 +14,7 @@ import {
 export default class octokitManager {
 
 
-   public _octokit: octokit;
+   private _octokit: octokit;
 
    private readonly _users: string[];
    private readonly _octokitOwner: string;
@@ -40,6 +41,27 @@ export default class octokitManager {
 
          token : octokitToken,
          owner : this._octokitOwner
+
+      });
+
+   }
+
+
+   async publishReadme({
+
+      file,
+      repo,
+      branch,
+      content
+
+   }: PublishReadmeParams): Promise<void> {
+
+      await this._octokit.respositorySet({
+
+         file : file,
+         data : content,
+         branch : branch,
+         repository : repo
 
       });
 
@@ -89,7 +111,7 @@ export default class octokitManager {
    }
 
 
-   async iterateReadmeArchive(callback: IterateReadmeArchiveCallback): Promise<void> {
+   async collectAllReadme(callback: IterateReadmeArchiveCallback): Promise<void> {
 
       for (const u of ['lxRbckl']) { // INSERT this._users WHEN DONE
 
@@ -103,8 +125,8 @@ export default class octokitManager {
 
                callback({
 
-                  'content' : readme,
-                  'filepath' : {
+                  'rawContent' : readme,
+                  'projectPath' : {
 
                      'repo' : r,
                      'owner' : u,

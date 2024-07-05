@@ -4,8 +4,8 @@
 // import <
 import { axiosGet } from 'lxrbckl';
 
-import { Properties } from './src/typings/readmeManager';
-import { ReadmeData } from './src/typings/octokitManager';
+import {  } from './src/typings/readmeManager';
+import {  } from './src/typings/octokitManager';
 
 import dataManager from './src/services/dataManager';
 import readmeManager from './src/services/readmeManager';
@@ -56,41 +56,55 @@ const urlElementDescriptions: string = 'https://raw.githubusercontent.com/lxRbck
    const elementResources: {[key: string]: string} = await axiosGet(urlElementResources);
    const elementDescription: {[key: string]: string} = await axiosGet(urlElementDescriptions);
 
-   await octokitHandler.iterateReadmeArchive((data: ReadmeData) => {
+   await octokitHandler.collectAllReadme((data) => {
 
-      dataHandler.addPropertiesToData(
+      dataHandler.addProperties({
 
-         readmeHandler.getPropertiesFromReadme(data.content),
-         data.filepath
+         publishSource : publishSource,
+         readmeProjectPath : data['projectPath'],
+         properties : readmeHandler.getProperties({readme: data['rawContent']})
 
-      )
-      
+      })
+
    });
 
-   // await readmeHandler.publishAllReadme(dataHandler.getData());
    for (const [subject, properties] of Object.entries(dataHandler.getData())) {
 
-      console.log(properties); // remove
+      // build subject <
+      readmeHandler.setReadme({
 
-      // publish subject <
-      console.log(subject);
-      // console.log(properties);
+         subject : subject,
+         properties : properties
 
-      // >
-
-      // iterate (subject->ecosystem) <
-      for (const topic of Object.keys(properties['ecosystem']!)) {
-
-         // console.log(topic);
-         console.log(topic);
-
-      }
+      });
 
       // >
 
-      console.log(' ');
-      
    }
+
+   // for (const [subject, properties] of Object.entries(dataHandler.getData())) {
+
+   //    // publish subject <
+   //    readmeHandler.setReadmeFromProperties({
+
+   //       subject : subject,
+   //       properties : properties
+
+   //    });
+
+   //    // >
+
+   //    // iterate (subject->ecosystem) <
+   //    for (const topic of Object.keys(properties['ecosystem']!)) {
+
+   //       // console.log(topic);
+   //       // console.log(topic);
+
+   //    }
+
+   //    // >
+      
+   // }
 
    // >
 

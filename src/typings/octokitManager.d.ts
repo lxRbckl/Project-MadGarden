@@ -16,7 +16,17 @@ export interface ConstructorParams {
 }
 
 
-export interface ReadmeFilePath {
+export interface PublishReadmeParams {
+
+   file: string;
+   repo: string;
+   branch: string;
+   content: string;
+
+}
+
+
+export interface ReadmeProjectPath {
 
    'url': string;
    'repo': string;
@@ -28,8 +38,8 @@ export interface ReadmeFilePath {
 
 export interface ReadmeData {
 
-   'content': string;
-   'filepath': ReadmeFilePath;
+   'rawContent': string;
+   'projectPath': ReadmeFilePath;
 
 }
 

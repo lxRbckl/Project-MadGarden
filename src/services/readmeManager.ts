@@ -4,6 +4,7 @@ import {
    Properties,
    PropertyRegexes,
    ConstructorParams,
+   GetPropertiesParams,
    setReadmeFromPropertiesParams
 
 } from '../typings/readmeManager';
@@ -34,7 +35,7 @@ export default class readmeManager {
    }
 
 
-   getPropertiesFromReadme(readme: string): Properties {
+   getProperties({readme}: GetPropertiesParams): Properties {
 
       var properties: Properties = {};
       var currentLanguage: string = '';
@@ -73,13 +74,15 @@ export default class readmeManager {
    }
 
 
-   async setReadmeFromProperties({
+   async setReadme({
 
       topic,
       subject,
       properties
 
    }: setReadmeFromPropertiesParams): Promise<string> {
+
+      
 
       // if (subject->topic) <
       // else if (subject) <
