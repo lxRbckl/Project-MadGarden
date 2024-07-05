@@ -42,10 +42,12 @@ export interface Properties {
 }
 
 
-export interface setReadmeFromPropertiesParams {
+export interface setReadmeParams {
 
    topic?: string;
    subject: string;
+   resource?: string;
+   description?: string;
    properties: Topic | Subject;
 
 }

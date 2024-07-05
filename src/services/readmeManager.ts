@@ -2,10 +2,10 @@
 import { 
 
    Properties,
+   setReadmeParams,
    PropertyRegexes,
    ConstructorParams,
    GetPropertiesParams,
-   setReadmeFromPropertiesParams
 
 } from '../typings/readmeManager';
 
@@ -78,11 +78,18 @@ export default class readmeManager {
 
       topic,
       subject,
-      properties
+      resource,
+      properties,
+      description
 
-   }: setReadmeFromPropertiesParams): Promise<string> {
+   }: setReadmeParams): Promise<string> {
 
-      
+      var links: string[] = [];
+      for (let i: number = 0; i < properties['urls']!.length; i++) {
+
+         console.log(i); // remove
+
+      }
 
       // if (subject->topic) <
       // else if (subject) <

@@ -54,7 +54,7 @@ const urlElementDescriptions: string = 'https://raw.githubusercontent.com/lxRbck
    // run <
    const markdownBuilds: {[key: string]: string} = await axiosGet(urlMarkdownBuilds);
    const elementResources: {[key: string]: string} = await axiosGet(urlElementResources);
-   const elementDescription: {[key: string]: string} = await axiosGet(urlElementDescriptions);
+   const elementDescriptions: {[key: string]: string} = await axiosGet(urlElementDescriptions);
 
    await octokitHandler.collectAllReadme((data) => {
 
@@ -74,7 +74,9 @@ const urlElementDescriptions: string = 'https://raw.githubusercontent.com/lxRbck
       readmeHandler.setReadme({
 
          subject : subject,
-         properties : properties
+         properties : properties,
+         resource: elementResources?.subject,
+         description : elementDescriptions?.subject
 
       });
 
