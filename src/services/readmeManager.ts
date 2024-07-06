@@ -85,7 +85,7 @@ export default class readmeManager {
    }: setReadmeParams): Promise<string> {
 
       var links: string[] = [];
-      for (let i: number = 0; i < properties['urls']!.length; i++) {
+      for (let i: number = 0; i < properties['urls'].length; i++) {
 
          const project: string = properties['projects'][i];
          const url: string = properties['urls'][i];

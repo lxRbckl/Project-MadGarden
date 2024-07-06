@@ -58,9 +58,9 @@ export default class dataManager {
          for (const t of topics) {
 
             // if (new topic) <
-            if (!(Object.keys(this._data[subject]['ecosystem']!).includes(t))) {
+            if (!(Object.keys(this._data[subject]['ecosystem']).includes(t))) {
 
-               this._data[subject]['ecosystem']![t] = {
+               this._data[subject]['ecosystem'][t] = {
 
                   'urls' : [],
                   'projects' : [],
@@ -73,8 +73,8 @@ export default class dataManager {
             // >
 
             // add subject->ecosystem->topic to data <
-            this._data[subject]['ecosystem']![t]['projects']?.push(project);
-            this._data[subject]['ecosystem']![t]['urls']?.push(readmeProjectPath['url']);
+            this._data[subject]['ecosystem'][t]['projects']?.push(project);
+            this._data[subject]['ecosystem'][t]['urls']?.push(readmeProjectPath['url']);
 
             // >
 
