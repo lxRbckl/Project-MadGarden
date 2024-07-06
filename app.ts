@@ -82,7 +82,15 @@ const urlElementDescriptions: string = 'https://raw.githubusercontent.com/lxRbck
       for (const topic of Object.keys(properties['ecosystem'])) {
 
          // build topic <
+         const readmeTopic: string = await readmeHandler.setReadme({
 
+            topic : topic,
+            subject : subject,
+            resource : elementResources?.topic,
+            properties : properties['ecosystem'][topic],
+            description : elementDescriptions?.description
+
+         })
 
          // >
 
