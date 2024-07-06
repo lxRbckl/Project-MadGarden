@@ -52,7 +52,6 @@ const urlElementDescriptions: string = 'https://raw.githubusercontent.com/lxRbck
 
 
    // run <
-   const markdownBuilds: {[key: string]: string} = await axiosGet(urlMarkdownBuilds);
    const elementResources: {[key: string]: string} = await axiosGet(urlElementResources);
    const elementDescriptions: {[key: string]: string} = await axiosGet(urlElementDescriptions);
 
@@ -71,7 +70,7 @@ const urlElementDescriptions: string = 'https://raw.githubusercontent.com/lxRbck
    for (const [subject, properties] of Object.entries(dataHandler.getData())) {
 
       // build subject <
-      readmeHandler.setReadme({
+      const readmeSubject: string = await readmeHandler.setReadme({
 
          subject : subject,
          properties : properties,
@@ -79,6 +78,18 @@ const urlElementDescriptions: string = 'https://raw.githubusercontent.com/lxRbck
          description : elementDescriptions?.subject
 
       });
+
+      // >
+
+      // // iterate (subject->ecosystem) <
+      // for (const topic of Object.keys(properties['ecosystem'])) {
+
+      //    // build topic <
+
+
+      //    // >
+
+      // }
 
       // >
 
