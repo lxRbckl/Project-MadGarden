@@ -4,6 +4,7 @@ import {
    Data, 
    Topic, 
    Subject,
+   DelSubjectParams,
    AddPropertiesParams
 
 } from '../typings/dataManager';
@@ -85,6 +86,9 @@ export default class dataManager {
       }
 
    }
+
+
+   delSubject({subject}: DelSubjectParams): void {delete this._data[subject];}
 
 
    getData(): Data {return this._data;}

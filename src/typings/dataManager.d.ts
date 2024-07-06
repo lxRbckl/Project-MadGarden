@@ -44,6 +44,13 @@ export interface Subject {
 }
 
 
+export interface DelSubjectParams {
+
+   subject: string;
+
+}
+
+
 export interface Data {
 
    [key: string]: Subject;

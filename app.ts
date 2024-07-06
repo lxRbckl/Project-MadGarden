@@ -66,7 +66,7 @@ const urlElementDescriptions: string = 'https://raw.githubusercontent.com/lxRbck
 
    for (const [subject, properties] of Object.entries(dataHandler.getData())) {
 
-      // build subject <
+      // build readme for subject <
       const readmeSubject: string = await readmeHandler.setReadme({
 
          subject : subject,
@@ -78,10 +78,10 @@ const urlElementDescriptions: string = 'https://raw.githubusercontent.com/lxRbck
 
       // >
 
-      // // iterate (subject->ecosystem) <
+      // iterate (subject->ecosystem) <
       for (const topic of Object.keys(properties['ecosystem'])) {
 
-         // build topic <
+         // build readme for topic <
          const readmeTopic: string = await readmeHandler.setReadme({
 
             topic : topic,
@@ -95,6 +95,11 @@ const urlElementDescriptions: string = 'https://raw.githubusercontent.com/lxRbck
          // >
 
       }
+
+      // >
+
+      // delete subject from data <
+      dataHandler.delSubject({subject : subject});
 
       // >
 
