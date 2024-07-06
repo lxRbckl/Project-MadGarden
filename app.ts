@@ -4,9 +4,6 @@
 // import <
 import { axiosGet } from 'lxrbckl';
 
-import {  } from './src/typings/readmeManager';
-import {  } from './src/typings/octokitManager';
-
 import dataManager from './src/services/dataManager';
 import readmeManager from './src/services/readmeManager';
 import octokitManager from './src/services/octokitManager';
@@ -82,43 +79,17 @@ const urlElementDescriptions: string = 'https://raw.githubusercontent.com/lxRbck
       // >
 
       // // iterate (subject->ecosystem) <
-      // for (const topic of Object.keys(properties['ecosystem'])) {
+      for (const topic of Object.keys(properties['ecosystem'])) {
 
-      //    // build topic <
+         // build topic <
 
 
-      //    // >
+         // >
 
-      // }
+      }
 
       // >
 
    }
-
-   // for (const [subject, properties] of Object.entries(dataHandler.getData())) {
-
-   //    // publish subject <
-   //    readmeHandler.setReadmeFromProperties({
-
-   //       subject : subject,
-   //       properties : properties
-
-   //    });
-
-   //    // >
-
-   //    // iterate (subject->ecosystem) <
-   //    for (const topic of Object.keys(properties['ecosystem']!)) {
-
-   //       // console.log(topic);
-   //       // console.log(topic);
-
-   //    }
-
-   //    // >
-      
-   // }
-
-   // >
 
 })();
