@@ -98,10 +98,7 @@ const urlElementDescriptions: string = 'https://raw.githubusercontent.com/lxRbck
 
       // >
 
-      // delete subject from data <
-      dataHandler.delSubject({subject : subject});
 
-      // >
 
    }
 

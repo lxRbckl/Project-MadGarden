@@ -88,6 +88,7 @@ export default class dataManager {
    }
 
 
+   // < future memory management option > //
    delSubject({subject}: DelSubjectParams): void {delete this._data[subject];}
 
 
