@@ -84,6 +84,8 @@ export default class readmeManager {
 
    }: setReadmeParams): Promise<string> {
 
+      console.log(properties); // remove
+
       var links: string[] = [];
       for (let i: number = 0; i < properties['urls'].length; i++) {
 
