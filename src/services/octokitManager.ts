@@ -113,7 +113,7 @@ export default class octokitManager {
 
    async collectAllReadme(callback: IterateReadmeArchiveCallback): Promise<void> {
 
-      for (const u of ['lxRbckl']) { // INSERT this._users WHEN DONE
+      for (const u of this._users) {
 
          let repos: string[] = await this._getReposFromUser(u);
          for (const r of repos) {
@@ -138,8 +138,6 @@ export default class octokitManager {
                });
 
             }
-
-            return undefined; // REMOVE WHEN DONE
 
          }
 
