@@ -95,7 +95,7 @@ export default class readmeManager {
       const description: string = this._elementDescriptions[title];
 
       // title, description?, breaker <
-      readme += `${title}\n`;
+      readme += `# ${title}\n`;
       readme += (description ? `> ${description}\n` : '');
       readme += `\n---\n\n`;
 
@@ -112,7 +112,7 @@ export default class readmeManager {
          }
 
          // ecosystem, breaker <
-         readme += '### Ecosystem\n';
+         readme += '## Ecosystem\n';
          readme += `${topics.join('\n')}\n`;
          readme += '\n# \n\n';
 
@@ -123,14 +123,14 @@ export default class readmeManager {
       // >
 
       // projects, breaker <
-      readme += '### Projects\n';
+      readme += '## Projects\n';
       readme += `${properties['projects'].join('\n')}\n`;
       readme += (resource ? '\n# \n\n' : '\n---');
 
       // >
 
       // resources?, breaker <
-      readme += (resource ? '### Resources\n' : '');
+      readme += (resource ? '## Resources\n' : '');
       readme += (resource ? `${resource.join('\n')}\n` : '');
       readme += (resource ? '\n---' : '');
 
