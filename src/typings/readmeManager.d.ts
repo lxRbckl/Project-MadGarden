@@ -5,7 +5,8 @@ import { Topic, Subject } from './dataManager';
 
 
 // types <
-
+export type ElementResources = {[key: string]: string[]};
+export type ElementDescriptions = {[key: string]: string};
 
 // >
 
@@ -31,6 +32,8 @@ export interface ConstructorParams {
    propertyTargetIndex: number;
    propertyExpectedSize: number;
    propertyRegexes: PropertyRegexes;
+   elementResources: ElementResources;
+   elementDescriptions: ElementDescriptions;
 
 }
 
@@ -46,8 +49,6 @@ export interface setReadmeParams {
 
    topic?: string;
    subject: string;
-   resource?: string[];
-   description?: string;
    properties: Topic | Subject;
 
 }

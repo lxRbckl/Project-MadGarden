@@ -5,6 +5,7 @@ import {
    Topic, 
    Subject,
    DelSubjectParams,
+   ConstructorParams,
    AddPropertiesParams
 
 } from '../typings/dataManager';
@@ -16,9 +17,15 @@ export default class dataManager {
 
 
    private _data: Data;
+   private readonly _fileName: string;
 
 
-   constructor() {this._data  = {};}
+   constructor({octokitFileName}: ConstructorParams) {
+      
+      this._data  = {};
+      this._fileName = octokitFileName;
+   
+   }
 
 
    addProperties({
@@ -39,8 +46,7 @@ export default class dataManager {
             this._data[subject] = {
 
                'projects' : [],
-               'ecosystem' : {},
-               'projectPath' : readmeProjectPath
+               'ecosystem' : {}
 
             } as Subject;
 
@@ -59,10 +65,11 @@ export default class dataManager {
             // if (new topic) <
             if (!(Object.keys(this._data[subject]['ecosystem']).includes(t))) {
 
+               let url: string = `${publishSource}/${subject}/${t}/${this._fileName}`;
                this._data[subject]['ecosystem'][t] = {
 
                   'projects' : [],
-                  'url' : `[\`${t}\`](${`${publishSource}/${subject}/${t}/README.md`})`
+                  'url' : `[\`${t}\`](${url})`
                   
                } as Topic;
 

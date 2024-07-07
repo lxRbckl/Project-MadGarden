@@ -12,6 +12,13 @@ import { ReadmeProjectPath } from './octokitManager';
 
 
 // interfaces <
+export interface ConstructorParams {
+
+   octokitFileName: string;
+
+}
+
+
 export interface AddPropertiesParams {
 
    publishSource: string;
@@ -42,7 +49,6 @@ export interface ProjectPath {
 export interface Subject {
 
    'projects': string[];
-   'projectPath' : ReadmeProjectPath,
    'ecosystem': { 
       
       [key: string]: Topic 

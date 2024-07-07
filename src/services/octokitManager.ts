@@ -16,9 +16,9 @@ export default class octokitManager {
 
    private _octokit: octokit;
 
+   private readonly _owner: string;
    private readonly _users: string[];
-   private readonly _octokitOwner: string;
-   private readonly _readmeFileName: string;
+   private readonly _fileName: string;
    private readonly _excludedBranches: string[];
 
 
@@ -27,20 +27,20 @@ export default class octokitManager {
       githubUsers,
       octokitOwner,
       octokitToken,
-      readmeFileName,
+      octokitFileName,
       excludedBranches,
 
    }: ConstructorParams) {
 
       this._users = githubUsers;
-      this._octokitOwner = octokitOwner;
-      this._readmeFileName = readmeFileName;
+      this._owner = octokitOwner;
+      this._fileName = octokitFileName;
       this._excludedBranches = excludedBranches;
 
       this._octokit = new octokit({
 
-         token : octokitToken,
-         owner : this._octokitOwner
+         owner : this._owner,
+         token : octokitToken
 
       });
 
@@ -102,7 +102,7 @@ export default class octokitManager {
 
          branch : branch,
          repository : repo,
-         file : this._readmeFileName
+         file : this._fileName
 
       });
 
@@ -131,7 +131,7 @@ export default class octokitManager {
                      'repo' : r,
                      'owner' : u,
                      'branch' : b,
-                     'url' : `https://github.com/${u}/${r}/blob/${b}/README.md`
+                     'url' : `https://github.com/${u}/${r}/blob/${b}/${this._fileName}`
 
                   }
 

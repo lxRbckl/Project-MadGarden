@@ -1,17 +1,12 @@
-// import <
-import {
-   
-   Topic, 
-   Subject
-
-} from '../typings/dataManager';
 import { 
 
-   Properties,
+   GetPropertiesParams,
+   ElementDescriptions,
+   ConstructorParams,
+   ElementResources,
    setReadmeParams,
    PropertyRegexes,
-   ConstructorParams,
-   GetPropertiesParams,
+   Properties
 
 } from '../typings/readmeManager';
 
@@ -24,17 +19,23 @@ export default class readmeManager {
    private readonly _propertyTargetIndex: number;
    private readonly _propertyExpectedSize: number;
    private readonly _propertyRegexes: PropertyRegexes;
+   private readonly _elementResources: ElementResources;
+   private readonly _elementDescriptions: ElementDescriptions;
 
 
    constructor({
    
       propertyRegexes,
+      elementResources,
+      elementDescriptions,
       propertyTargetIndex,
       propertyExpectedSize
 
    }: ConstructorParams) {
 
       this._propertyRegexes = propertyRegexes;
+      this._elementResources = elementResources;
+      this._elementDescriptions = elementDescriptions;
       this._propertyTargetIndex = propertyTargetIndex;
       this._propertyExpectedSize = propertyExpectedSize;
       
@@ -84,16 +85,17 @@ export default class readmeManager {
 
       topic,
       subject,
-      resource,
-      properties,
-      description
+      properties
 
    }: setReadmeParams): Promise<string> {
 
       var readme: string = '';
+      const title: string = (topic ? topic : subject);
+      const resource: string[] = this._elementResources[title];
+      const description: string = this._elementDescriptions[title];
 
-      // title, description, breaker <
-      readme += `${(topic ? topic : subject)}\n`;
+      // title, description?, breaker <
+      readme += `${title}\n`;
       readme += (description ? `> ${description}\n` : '');
       readme += `\n---\n\n`;
 

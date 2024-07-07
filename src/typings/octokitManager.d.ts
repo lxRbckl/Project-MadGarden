@@ -10,7 +10,7 @@ export interface ConstructorParams {
    octokitOwner: string;
    octokitToken: string;
    githubUsers: string[];
-   readmeFileName: string;
+   octokitFileName: string;
    excludedBranches: string[];
 
 }

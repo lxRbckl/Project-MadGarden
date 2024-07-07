@@ -12,12 +12,14 @@ import octokitManager from './src/services/octokitManager';
 
 
 // env <
+const octokitBranch: string = 'main';
+const octokitRepo: string = 'lxRbckl';
 const octokitOwner: string = 'lxRbckl';
-const readmeFileName: string = 'README.md';
+const octokitFileName: string = 'README.md';
 const octokitToken: string = '';
 const publishSource: string = 'https://github.com/lxRbckl/lxRbckl/tree/main';
-const githubUsersURL: string = 'https://raw.githubusercontent.com/lxRbckl/Project-Heimir/V2/src/data/githubUsers.json';
-const urlMarkdownBuilds: string = 'https://raw.githubusercontent.com/lxRbckl/Project-Landscape/main/src/data/markdownBuilds.json';
+
+const urlGitHubUsers: string = 'https://raw.githubusercontent.com/lxRbckl/Project-Heimir/V2/src/data/githubUsers.json';
 const urlElementResources: string = 'https://raw.githubusercontent.com/lxRbckl/Project-Landscape/main/src/data/elementResources.json';
 const urlElementDescriptions: string = 'https://raw.githubusercontent.com/lxRbckl/Project-Landscape/main/src/data/elementDescription.json';
 
@@ -27,20 +29,22 @@ const urlElementDescriptions: string = 'https://raw.githubusercontent.com/lxRbck
 (async () => {
 
    // init objects <
-   var dataHandler: dataManager = new dataManager();
+   var dataHandler: dataManager = new dataManager({octokitFileName : octokitFileName});
    var octokitHandler: octokitManager = new octokitManager({
 
       excludedBranches : [],
       octokitOwner : octokitOwner,
       octokitToken : octokitToken,
-      readmeFileName : readmeFileName,
-      githubUsers : await axiosGet(githubUsersURL)
+      octokitFileName : octokitFileName,
+      githubUsers : await axiosGet(urlGitHubUsers)
 
    });
    var readmeHandler: readmeManager = new readmeManager({
 
       propertyTargetIndex : 1,
       propertyExpectedSize : 3,
+      elementResources : await axiosGet(urlElementResources),
+      elementDescriptions : await axiosGet(urlElementDescriptions),
       propertyRegexes : {'topics' : /\[`([^`]*)`\]/, 'subjects' : /\[\*\*`([^`]*)`\*\*\]/}
 
    });
@@ -49,9 +53,6 @@ const urlElementDescriptions: string = 'https://raw.githubusercontent.com/lxRbck
 
 
    // run <
-   const elementResources: {[key: string]: string[]} = await axiosGet(urlElementResources);
-   const elementDescriptions: {[key: string]: string} = await axiosGet(urlElementDescriptions);
-
    await octokitHandler.collectAllReadme((data) => {
 
       dataHandler.addProperties({
@@ -66,47 +67,43 @@ const urlElementDescriptions: string = 'https://raw.githubusercontent.com/lxRbck
 
    for (const [subject, properties] of Object.entries(dataHandler.getData())) {
 
-      // // build and publish subject <
-      // await octokitHandler.publishReadme({
+      // build and publish subject <
+      await octokitHandler.publishReadme({
 
-      //    file : ,
-      //    repo : ,
-      //    branch : ,
-      //    content : await readmeHandler.setReadme({
+         repo : octokitRepo,
+         branch : octokitBranch,
+         file : `${subject}/${octokitFileName}`,
+         content : await readmeHandler.setReadme({
 
-      //       subject : subject,
-      //       properties : properties,
-      //       resource: elementResources?.subject,
-      //       description : elementDescriptions?.subject
+            subject : subject,
+            properties : properties
 
-      //    })
+         })
 
-      // });
+      });
 
-      // // >
+      // >
 
       // iterate (subject->ecosystem) <
       for (const topic of Object.keys(properties['ecosystem'])) {
 
-         // // build and publish topic <
-         // await octokitHandler.publishReadme({
+         // build and publish topic <
+         await octokitHandler.publishReadme({
 
-         //    file : ,
-         //    repo : ,
-         //    branch : ,
-         //    content : await readmeHandler.setReadme({
+            repo : octokitRepo,
+            branch : octokitBranch,
+            file : `${subject}/${topic}/${octokitFileName}`,
+            content : await readmeHandler.setReadme({
 
-         //       topic : topic,
-         //       subject : subject,
-         //       resource : elementResources?.topic,
-         //       properties : properties['ecosystem'][topic],
-         //       description : elementDescriptions?.description
+               topic : topic,
+               subject : subject,
+               properties : properties['ecosystem'][topic]
 
-         //    })
+            })
 
-         // });
+         });
 
-         // // >
+         // >
 
       }
 
