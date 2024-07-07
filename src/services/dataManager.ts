@@ -39,7 +39,8 @@ export default class dataManager {
             this._data[subject] = {
 
                'projects' : [],
-               'ecosystem' : {}
+               'ecosystem' : {},
+               'projectPath' : readmeProjectPath
 
             } as Subject;
 

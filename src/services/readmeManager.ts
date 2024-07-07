@@ -94,7 +94,7 @@ export default class readmeManager {
 
       // title, description, breaker <
       readme += `${(topic ? topic : subject)}\n`;
-      readme += (description ? `${description}\n` : '');
+      readme += (description ? `> ${description}\n` : '');
       readme += `\n---\n\n`;
 
       // >

@@ -29,9 +29,20 @@ export interface Topic {
 }
 
 
+export interface ProjectPath {
+
+   'url' : string;
+   'repo': string;
+   'owner': string;
+   'branch': string;
+
+}
+
+
 export interface Subject {
 
    'projects': string[];
+   'projectPath' : ReadmeProjectPath,
    'ecosystem': { 
       
       [key: string]: Topic 

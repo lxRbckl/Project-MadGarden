@@ -64,45 +64,53 @@ const urlElementDescriptions: string = 'https://raw.githubusercontent.com/lxRbck
 
    });
 
-   var readme: string = '';
    for (const [subject, properties] of Object.entries(dataHandler.getData())) {
 
-      // build readme for subject <
-      readme = await readmeHandler.setReadme({
+      // // build and publish subject <
+      // await octokitHandler.publishReadme({
 
-         subject : subject,
-         properties : properties,
-         resource: elementResources?.subject,
-         description : elementDescriptions?.subject
+      //    file : ,
+      //    repo : ,
+      //    branch : ,
+      //    content : await readmeHandler.setReadme({
 
-      });
+      //       subject : subject,
+      //       properties : properties,
+      //       resource: elementResources?.subject,
+      //       description : elementDescriptions?.subject
 
-      // >
+      //    })
+
+      // });
+
+      // // >
 
       // iterate (subject->ecosystem) <
       for (const topic of Object.keys(properties['ecosystem'])) {
 
-         // build readme for topic <
-         readme = await readmeHandler.setReadme({
+         // // build and publish topic <
+         // await octokitHandler.publishReadme({
 
-            topic : topic,
-            subject : subject,
-            resource : elementResources?.topic,
-            properties : properties['ecosystem'][topic],
-            description : elementDescriptions?.description
+         //    file : ,
+         //    repo : ,
+         //    branch : ,
+         //    content : await readmeHandler.setReadme({
 
-         });
+         //       topic : topic,
+         //       subject : subject,
+         //       resource : elementResources?.topic,
+         //       properties : properties['ecosystem'][topic],
+         //       description : elementDescriptions?.description
 
-         // >
+         //    })
 
-         console.log(readme);
-         console.log('<><><><><><><><><><><><><>');
+         // });
+
+         // // >
 
       }
 
       // >
-
-
 
    }
 
