@@ -49,7 +49,7 @@ const urlElementDescriptions: string = 'https://raw.githubusercontent.com/lxRbck
 
 
    // run <
-   const elementResources: {[key: string]: string} = await axiosGet(urlElementResources);
+   const elementResources: {[key: string]: string[]} = await axiosGet(urlElementResources);
    const elementDescriptions: {[key: string]: string} = await axiosGet(urlElementDescriptions);
 
    await octokitHandler.collectAllReadme((data) => {
@@ -64,10 +64,11 @@ const urlElementDescriptions: string = 'https://raw.githubusercontent.com/lxRbck
 
    });
 
+   var readme: string = '';
    for (const [subject, properties] of Object.entries(dataHandler.getData())) {
 
       // build readme for subject <
-      const readmeSubject: string = await readmeHandler.setReadme({
+      readme = await readmeHandler.setReadme({
 
          subject : subject,
          properties : properties,
@@ -82,7 +83,7 @@ const urlElementDescriptions: string = 'https://raw.githubusercontent.com/lxRbck
       for (const topic of Object.keys(properties['ecosystem'])) {
 
          // build readme for topic <
-         const readmeTopic: string = await readmeHandler.setReadme({
+         readme = await readmeHandler.setReadme({
 
             topic : topic,
             subject : subject,
@@ -90,9 +91,12 @@ const urlElementDescriptions: string = 'https://raw.githubusercontent.com/lxRbck
             properties : properties['ecosystem'][topic],
             description : elementDescriptions?.description
 
-         })
+         });
 
          // >
+
+         console.log(readme);
+         console.log('<><><><><><><><><><><><><>');
 
       }
 

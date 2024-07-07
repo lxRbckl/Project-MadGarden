@@ -24,7 +24,6 @@ export interface AddPropertiesParams {
 export interface Topic {
 
    'url': string;
-   'urls': string[];
    'projects': string[];
 
 }
@@ -32,8 +31,6 @@ export interface Topic {
 
 export interface Subject {
 
-   'url': string;
-   'urls': string[];
    'projects': string[];
    'ecosystem': { 
       

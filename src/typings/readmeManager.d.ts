@@ -46,7 +46,7 @@ export interface setReadmeParams {
 
    topic?: string;
    subject: string;
-   resource?: string;
+   resource?: string[];
    description?: string;
    properties: Topic | Subject;
 

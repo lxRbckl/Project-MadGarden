@@ -1,4 +1,10 @@
 // import <
+import {
+   
+   Topic, 
+   Subject
+
+} from '../typings/dataManager';
 import { 
 
    Properties,
@@ -84,35 +90,51 @@ export default class readmeManager {
 
    }: setReadmeParams): Promise<string> {
 
-      console.log(properties); // remove
+      var readme: string = '';
 
-      var links: string[] = [];
-      for (let i: number = 0; i < properties['urls'].length; i++) {
+      // title, description, breaker <
+      readme += `${(topic ? topic : subject)}\n`;
+      readme += (description ? `${description}\n` : '');
+      readme += `\n---\n\n`;
 
-         const project: string = properties['projects'][i];
-         const url: string = properties['urls'][i];
+      // >
 
-         links.push(`[\`${project}\`](${url})`);
+      // if (subject) <
+      if ('ecosystem' in properties) {
 
-      }
+         var topics: string[] = [];
+         for (const t of Object.values(properties['ecosystem'])) {
 
-      // if (subject->topic) <
-      // else if (subject) <
-      if (topic) {
+            topics.push(t['url']);
 
-         
+         }
 
-      }
+         // ecosystem, breaker <
+         readme += '### Ecosystem\n';
+         readme += `${topics.join('\n')}\n`;
+         readme += '\n# \n\n';
 
-      else if (subject) {
-
-         
+         // >
 
       }
 
       // >
 
-      return 'ok';
+      // projects, breaker <
+      readme += '### Projects\n';
+      readme += `${properties['projects'].join('\n')}\n`;
+      readme += (resource ? '\n# \n\n' : '\n---');
+
+      // >
+
+      // resources?, breaker <
+      readme += (resource ? '### Resources\n' : '');
+      readme += (resource ? `${resource.join('\n')}\n` : '');
+      readme += (resource ? '\n---' : '');
+
+      // >
+
+      return readme;
 
    }
 

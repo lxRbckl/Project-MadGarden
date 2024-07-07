@@ -29,6 +29,8 @@ export default class dataManager {
 
    }: AddPropertiesParams): void {
 
+      var projectTitle: string = '';
+      var projectReadme: string = '';
       for (const [subject, topics] of Object.entries(properties)) {
 
          // if (new subject) <
@@ -36,10 +38,8 @@ export default class dataManager {
 
             this._data[subject] = {
 
-               'urls' : [],
                'projects' : [],
-               'ecosystem' : {},
-               'url' : `${publishSource}/${subject}/README.md`
+               'ecosystem' : {}
 
             } as Subject;
 
@@ -47,13 +47,10 @@ export default class dataManager {
 
          // >
 
-         // add subject to data <
-         const project: string = `${readmeProjectPath['repo']} ${readmeProjectPath['branch']}`;
+         projectTitle = `${readmeProjectPath['repo']} ${readmeProjectPath['branch']}`;
+         projectReadme = `[\`${projectTitle}\`](${readmeProjectPath['url']})`;
 
-         this._data[subject]['urls']?.push(readmeProjectPath['url']);
-         this._data[subject]['projects']?.push(project);
-
-         // >
+         this._data[subject]['projects'].push(projectReadme);
 
          // iterate (subject->ecosystem) <
          for (const t of topics) {
@@ -63,21 +60,16 @@ export default class dataManager {
 
                this._data[subject]['ecosystem'][t] = {
 
-                  'urls' : [],
                   'projects' : [],
-                  'url' : `${publishSource}/${subject}/${t}/README.md`
-
+                  'url' : `[\`${t}\`](${`${publishSource}/${subject}/${t}/README.md`})`
+                  
                } as Topic;
 
             }
 
             // >
 
-            // add subject->ecosystem->topic to data <
-            this._data[subject]['ecosystem'][t]['projects']?.push(project);
-            this._data[subject]['ecosystem'][t]['urls']?.push(readmeProjectPath['url']);
-
-            // >
+            this._data[subject]['ecosystem'][t]['projects'].push(projectReadme);
 
          }
 
