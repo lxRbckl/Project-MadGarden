@@ -67,7 +67,7 @@ const urlElementDescriptions: string = 'https://raw.githubusercontent.com/lxRbck
 
    for (const [subject, properties] of Object.entries(dataHandler.getData())) {
 
-      // build and publish subject <
+      // // build and publish subject <
       await octokitHandler.publishReadme({
 
          repo : octokitRepo,
@@ -87,7 +87,7 @@ const urlElementDescriptions: string = 'https://raw.githubusercontent.com/lxRbck
       // iterate (subject->ecosystem) <
       for (const topic of Object.keys(properties['ecosystem'])) {
 
-         // build and publish topic <
+         // // build and publish topic <
          await octokitHandler.publishReadme({
 
             repo : octokitRepo,

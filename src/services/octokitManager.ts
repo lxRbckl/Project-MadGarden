@@ -98,11 +98,13 @@ export default class octokitManager {
 
    private async _getReadmeFromBranch(repo: string, branch: string): Promise<string> {
 
+
       let readme: string = await this._octokit.repositoryGet({
 
          branch : branch,
          repository : repo,
-         file : this._fileName
+         file : this._fileName,
+         displayError : true
 
       });
 
@@ -115,6 +117,7 @@ export default class octokitManager {
 
       for (const u of this._users) {
 
+         this._octokit.owner = u;
          let repos: string[] = await this._getReposFromUser(u);
          for (const r of repos) {
 
@@ -123,19 +126,23 @@ export default class octokitManager {
 
                let readme: string = await this._getReadmeFromBranch(r, b);
 
-               callback({
+               if (readme) {
 
-                  'rawContent' : readme,
-                  'projectPath' : {
+                  callback({
 
-                     'repo' : r,
-                     'owner' : u,
-                     'branch' : b,
-                     'url' : `https://github.com/${u}/${r}/blob/${b}/${this._fileName}`
+                     'rawContent' : readme,
+                     'projectPath' : {
 
-                  }
+                        'repo' : r,
+                        'owner' : u,
+                        'branch' : b,
+                        'url' : `https://github.com/${u}/${r}/blob/${b}/${this._fileName}`
 
-               });
+                     }
+
+                  });
+
+               }
 
             }
 
