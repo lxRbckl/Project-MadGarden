@@ -57,7 +57,8 @@ export default class markdownManager {
                      properties[currentSubject] = {
                         
                         'url' : url,
-                        'topics' : {}, 
+                        'name' : target,
+                        'ecosystem' : {}, 
                         'hyperlink' : hyperlink
                      
                      };
@@ -68,9 +69,10 @@ export default class markdownManager {
                      url = `${url}/${target}/${octokitConfig.file}`;
                      hyperlink = `[\`${target}\`](${url})`;
 
-                     properties[currentSubject]['topics'][target] = {
+                     properties[currentSubject]['ecosystem'][target] = {
 
                         'url' : url,
+                        'name' : target,
                         'hyperlink' : hyperlink
 
                      };
@@ -102,13 +104,13 @@ export default class markdownManager {
       const resource: string[] = this._elementResources?.[element];
       const description: string = this._elementDescriptions?.[element];
 
-      console.log(subject, topic); // remove
+      // add title <
+      var readme: string = `# [${octokitConfig.owner}](${octokitConfig.source})`;
+      readme += `/[${subject.name}](${subject.url})`;
 
-      // // add title <
-      var readme: string = `${octokitConfig.source}/${octokitConfig.file}`;
-      // readme += `/${subject.name}`;
+      console.log(readme); // remove
 
-      // // >
+      // >
 
       // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -158,6 +160,7 @@ export default class markdownManager {
 
       // // >
 
+      var readme: string = '';
       return readme;
 
    }

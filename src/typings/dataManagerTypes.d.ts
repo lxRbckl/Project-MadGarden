@@ -1,5 +1,11 @@
 // imports <
-import { Properties } from './markdownManagerTypes';
+import { 
+   
+   Properties,
+   PropertyTopic,
+   PropertySubject
+
+} from './markdownManagerTypes';
 
 // >
 
@@ -26,28 +32,24 @@ export interface DelSubjectParams {
 }
 
 
-export interface Topic {
+export interface DataTopic extends PropertyTopic {
 
-   'url': string;
-   'hyperlink': string;
    'projects': string[];
 
 }
 
 
-export interface Subject {
+export interface DataSubject extends PropertySubject {
 
-   'url': string;
-   'hyperlink': string;
    'projects': string[];
-   'ecosystem': {[key: string]: Topic};
-
+   'ecosystem': {[key: string]: DataTopic};
+   
 }
 
 
 export interface Data {
 
-   [key: string]: Subject;
+   [key: string]: DataSubject;
 
 }
 

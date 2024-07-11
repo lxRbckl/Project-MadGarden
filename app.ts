@@ -68,6 +68,6 @@ import markdownConfig from './src/configs/markdownManagerConfig';
 
       }
 
-   })
+   });
 
 })();

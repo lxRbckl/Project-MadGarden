@@ -13,8 +13,8 @@ const markdownManagerConfig: {
    splitDelimeter : '\n',
    splitExpectedSize : 3,
    propertyRegexes : {'topic' : /\[`([^`]*)`\]/, 'subject' : /\[\*\*`([^`]*)`\*\*\]/},
-   urlElementResources : 'https://raw.githubusercontent.com/lxRbckl/Project-Landscape/main/src/data/elementResources.json',
-   urlElementDescriptions : 'https://raw.githubusercontent.com/lxRbckl/Project-Landscape/main/src/data/elementDescription.json'
+   urlElementResources : 'https://raw.githubusercontent.com/lxRbckl/Project-Landscape/V1/resources/elementResources.json',
+   urlElementDescriptions : 'https://raw.githubusercontent.com/lxRbckl/Project-Landscape/V1/resources/elementDescription.json'
 
 }
 

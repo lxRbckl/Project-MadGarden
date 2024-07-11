@@ -148,8 +148,8 @@ export default class octokitManager {
             file : `${subject}/${octokitConfig.file}`,
             content : callback({
 
+               subject : sProps,
                projects : sProps.projects,
-               subject : {'name' : subject, 'hyperlink' : sProps.hyperlink},
                ecosystem : Object.values(sProps.ecosystem).map(i => i.hyperlink)
 
             })
@@ -164,9 +164,9 @@ export default class octokitManager {
                file : `${subject}/${topic}/${octokitConfig.file}`,
                content : callback({
 
-                  projects : tProps.projects,
-                  topic : {'name' : topic, 'hyperlink' : tProps.hyperlink},
-                  subject : {'name' : subject, 'hyperlink' : sProps.hyperlink}
+                  topic : tProps,
+                  subject : sProps,
+                  projects : tProps.projects
 
                })
 

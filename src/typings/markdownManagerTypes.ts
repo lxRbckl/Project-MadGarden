@@ -1,5 +1,5 @@
 // imports <
-
+import { DataTopic, DataSubject } from './dataManagerTypes';
 
 // >
 
@@ -29,20 +29,32 @@ export interface ExtractPropertiesParams {
 }
 
 
-export interface Properties {
+export interface PropertyTopic {
 
-   [key: string]: {
+   'url': string;
+   'name': string;
+   'hyperlink': string;
 
-      'url': string;
-      'hyperlink': string;
-      'topics': {[key: string]: {
+}
 
-         'url': string;
-         'hyperlink': string;
 
-      }};
+export interface PropertySubject {
+
+   'url': string;
+   'name': string;
+   'hyperlink': string;
+   'ecosystem': {
+
+      [key: string]: PropertyTopic
 
    };
+
+}
+
+
+export interface Properties {
+
+   [key: string]: PropertySubject;
 
  }
  
@@ -50,10 +62,10 @@ export interface Properties {
 
 export interface BuildParams {
 
+   topic?: DataTopic;
    projects: string[];
+   subject: DataSubject;
    ecosystem?: string[];
-   topic?: {name: string, hyperlink: string};
-   subject: {name: string, hyperlink: string};
 
 }
 

@@ -34,10 +34,9 @@ export default class dataManager {
 
             this._data[subject] = {
 
+               ...sProps,
                'projects' : [],
-               'ecosystem' : {},
-               'url' : sProps.url,
-               'hyperlink' : sProps.hyperlink
+               'ecosystem' : {}
 
             };
 
@@ -48,17 +47,16 @@ export default class dataManager {
          // add project->readme to subject->projects //
          this._data[subject]['projects'].push(readmeHyperlink);
 
-         // iterate (subject->topics) <
-         for (const [t, tProps] of Object.entries(sProps.topics)) {
+         // iterate (subject->ecosystem) <
+         for (const [t, tProps] of Object.entries(sProps.ecosystem)) {
 
             // if (new topic) <
             if (!(Object.keys(this._data[subject]['ecosystem']).includes(t))) {
 
                this._data[subject]['ecosystem'][t] = {
 
-                  'projects' : [],
-                  'url' : tProps.url,
-                  'hyperlink' : tProps.hyperlink
+                  ...tProps,
+                  'projects' : []
 
                };
 
