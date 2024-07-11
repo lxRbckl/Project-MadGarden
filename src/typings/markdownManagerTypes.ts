@@ -33,8 +33,14 @@ export interface Properties {
 
    [key: string]: {
 
-     'hyperlink': string;
-     'topics': {[key: string]: string};
+      'url': string;
+      'hyperlink': string;
+      'topics': {[key: string]: {
+
+         'url': string;
+         'hyperlink': string;
+
+      }};
 
    };
 

@@ -1,15 +1,17 @@
-import octokitConfig from '../configs/octokitManagerConfig';
-import markdownConfig from '../configs/markdownManagerConfig';
+// import <
 import { 
 
-   ExtractPropertiesParams,
-   ElementDescriptions,
-   ConstructorParams,
-   ElementResources,
+   Properties,
    BuildParams,
-   Properties
+   ElementResources,
+   ConstructorParams,
+   ElementDescriptions,
+   ExtractPropertiesParams
 
 } from '../typings/markdownManagerTypes';
+
+import octokitConfig from '../configs/octokitManagerConfig';
+import markdownConfig from '../configs/markdownManagerConfig';
 
 // >
 
@@ -51,13 +53,27 @@ export default class markdownManager {
                      currentSubject = target;
                      url = `${octokitConfig.source}/${currentSubject}`;
                      hyperlink = `[\`${currentSubject}\`](${url}/${octokitConfig.file})`;
-                     properties[currentSubject] = {'topics' : {}, 'hyperlink' : hyperlink};
+
+                     properties[currentSubject] = {
+                        
+                        'url' : url,
+                        'topics' : {}, 
+                        'hyperlink' : hyperlink
+                     
+                     };
                      break;
 
                   case 'topic':
 
-                     hyperlink = `[\`${target}\`](${url}/${target}/${octokitConfig.file})`;
-                     properties[currentSubject]['topics'][target] = hyperlink;
+                     url = `${url}/${target}/${octokitConfig.file}`;
+                     hyperlink = `[\`${target}\`](${url})`;
+
+                     properties[currentSubject]['topics'][target] = {
+
+                        'url' : url,
+                        'hyperlink' : hyperlink
+
+                     };
                      break;
 
                }
@@ -82,18 +98,17 @@ export default class markdownManager {
 
    }: BuildParams): string {
 
-      var readme: string = '';
-
-
-      console.log(subject, topic);
-      console.log('<><><>');
-
       const element: string = (topic ? topic.name : subject.name);
-      const resource: string[] = this._elementResources[element];
-      const description: string = this._elementDescriptions[element];
+      const resource: string[] = this._elementResources?.[element];
+      const description: string = this._elementDescriptions?.[element];
 
+      console.log(subject, topic); // remove
 
+      // // add title <
+      var readme: string = `${octokitConfig.source}/${octokitConfig.file}`;
+      // readme += `/${subject.name}`;
 
+      // // >
 
       // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 

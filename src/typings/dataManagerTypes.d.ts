@@ -28,6 +28,7 @@ export interface DelSubjectParams {
 
 export interface Topic {
 
+   'url': string;
    'hyperlink': string;
    'projects': string[];
 
@@ -36,6 +37,7 @@ export interface Topic {
 
 export interface Subject {
 
+   'url': string;
    'hyperlink': string;
    'projects': string[];
    'ecosystem': {[key: string]: Topic};

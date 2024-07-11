@@ -27,7 +27,7 @@ export default class dataManager {
    }: AddPropertiesParams): void {
 
       // iterate (properties->subjects) <
-      for (const [subject, properties] of Object.entries(readmeProperties)) {
+      for (const [subject, sProps] of Object.entries(readmeProperties)) {
 
          // if (new subject) <
          if (!(Object.keys(this._data)).includes(subject)) {
@@ -36,7 +36,8 @@ export default class dataManager {
 
                'projects' : [],
                'ecosystem' : {},
-               'hyperlink' : properties.hyperlink
+               'url' : sProps.url,
+               'hyperlink' : sProps.hyperlink
 
             };
 
@@ -48,7 +49,7 @@ export default class dataManager {
          this._data[subject]['projects'].push(readmeHyperlink);
 
          // iterate (subject->topics) <
-         for (const [t, hyperlink] of Object.entries(properties.topics)) {
+         for (const [t, tProps] of Object.entries(sProps.topics)) {
 
             // if (new topic) <
             if (!(Object.keys(this._data[subject]['ecosystem']).includes(t))) {
@@ -56,7 +57,8 @@ export default class dataManager {
                this._data[subject]['ecosystem'][t] = {
 
                   'projects' : [],
-                  'hyperlink' : hyperlink
+                  'url' : tProps.url,
+                  'hyperlink' : tProps.hyperlink
 
                };
 
