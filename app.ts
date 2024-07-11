@@ -4,111 +4,70 @@
 // import <
 import { axiosGet } from 'lxrbckl';
 
-import dataManager from './src/services/dataManager';
-import readmeManager from './src/services/readmeManager';
-import octokitManager from './src/services/octokitManager';
+import dataManager from './src/managers/dataManager';
+import octokitManager from './src/managers/octokitManager';
+import markdownManager from './src/managers/markdownManager';
 
-// >
-
-
-// env <
-const octokitBranch: string = 'main';
-const octokitRepo: string = 'lxRbckl';
-const octokitOwner: string = 'lxRbckl';
-const octokitFileName: string = 'README.md';
-const octokitToken: string = '';
-const publishSource: string = 'https://github.com/lxRbckl/lxRbckl/tree/main';
-
-const urlGitHubUsers: string = 'https://raw.githubusercontent.com/lxRbckl/Project-Heimir/V2/src/data/githubUsers.json';
-const urlElementResources: string = 'https://raw.githubusercontent.com/lxRbckl/Project-Landscape/main/src/data/elementResources.json';
-const urlElementDescriptions: string = 'https://raw.githubusercontent.com/lxRbckl/Project-Landscape/main/src/data/elementDescription.json';
+import octokitConfig from './src/configs/octokitManagerConfig';
+import markdownConfig from './src/configs/markdownManagerConfig';
 
 // >
 
 
 (async () => {
 
-   // init objects <
-   var dataHandler: dataManager = new dataManager({octokitFileName : octokitFileName});
+   var dataHandler: dataManager = new dataManager();
    var octokitHandler: octokitManager = new octokitManager({
 
-      excludedBranches : [],
-      octokitOwner : octokitOwner,
-      octokitToken : octokitToken,
-      octokitFileName : octokitFileName,
-      githubUsers : await axiosGet(urlGitHubUsers)
+      githubUsers : await axiosGet(octokitConfig.urlGitHubUsers)
 
    });
-   var readmeHandler: readmeManager = new readmeManager({
+   var markdownHandler: markdownManager = new markdownManager({
 
-      propertyTargetIndex : 1,
-      propertyExpectedSize : 3,
-      elementResources : await axiosGet(urlElementResources),
-      elementDescriptions : await axiosGet(urlElementDescriptions),
-      propertyRegexes : {'topics' : /\[`([^`]*)`\]/, 'subjects' : /\[\*\*`([^`]*)`\*\*\]/}
+      elementResources : await axiosGet(markdownConfig.urlElementResources),
+      elementDescriptions : await axiosGet(markdownConfig.urlElementDescriptions)
 
    });
 
-   // >
 
+   await octokitHandler.fetchAllReadme({
 
-   // run <
-   await octokitHandler.collectAllReadme((data) => {
+      callback : ({file, hyperlink}) => {
 
-      dataHandler.addProperties({
+         dataHandler.addProperties({
 
-         publishSource : publishSource,
-         readmeProjectPath : data['projectPath'],
-         properties : readmeHandler.getProperties({readme: data['rawContent']})
-
-      })
-
-   });
-
-   for (const [subject, properties] of Object.entries(dataHandler.getData())) {
-
-      // // build and publish subject <
-      await octokitHandler.publishReadme({
-
-         repo : octokitRepo,
-         branch : octokitBranch,
-         file : `${subject}/${octokitFileName}`,
-         content : await readmeHandler.setReadme({
-
-            subject : subject,
-            properties : properties
-
-         })
-
-      });
-
-      // >
-
-      // iterate (subject->ecosystem) <
-      for (const topic of Object.keys(properties['ecosystem'])) {
-
-         // // build and publish topic <
-         await octokitHandler.publishReadme({
-
-            repo : octokitRepo,
-            branch : octokitBranch,
-            file : `${subject}/${topic}/${octokitFileName}`,
-            content : await readmeHandler.setReadme({
-
-               topic : topic,
-               subject : subject,
-               properties : properties['ecosystem'][topic]
-
-            })
+            readmeHyperlink : hyperlink,
+            readmeProperties : markdownHandler.extractProperties({file : file})
 
          });
 
-         // >
+      }
+
+   });
+
+   await octokitHandler.publishAllReadme({
+
+      data : dataHandler.getData(),
+      callback : ({
+
+         topic,
+         subject,
+         projects,
+         ecosystem
+
+      }) => {
+
+         return markdownHandler.build({
+
+            topic : topic,
+            subject : subject,
+            projects : projects,
+            ecosystem : ecosystem
+
+         });
 
       }
 
-      // >
-
-   }
+   })
 
 })();
