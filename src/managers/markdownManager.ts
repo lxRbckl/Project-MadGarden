@@ -124,7 +124,7 @@ export default class markdownManager {
          // >
 
          // (projects, breaker) <
-         '\n## Projects\n',
+         '\n## Experience\n',
          projects.join(' '),
          resource ? markdownConfig.smallBreaker : markdownConfig.bigBreaker,
 
