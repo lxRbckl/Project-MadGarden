@@ -23,7 +23,6 @@ ENV excludedBranches ${excludedBranches}
 WORKDIR /app
 COPY ./ /app/
 RUN npm install
-RUN npm build
 
 
 CMD ["node", "app/dist/app.js"]
