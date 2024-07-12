@@ -143,55 +143,34 @@ export default class octokitManager {
       // iterate (subjects) <
       for (const [subject, sProps] of Object.entries(data)) {
 
-         console.log(sProps);
-         console.log('<><>');
+         this.publishReadme({
 
-         console.log(callback({
+            file : `${subject}/${octokitConfig.file}`,
+            content : callback({
 
-            subject : sProps,
-            projects : sProps.projects,
-            ecosystem : Object.values(sProps.ecosystem).map(i => i.hyperlink)
+               subject : sProps,
+               projects : sProps.projects,
+               ecosystem : Object.values(sProps.ecosystem).map(i => i.hyperlink)
 
-         }));
-         console.log('<><><><><><><><>');
+            })
 
-         // this.publishReadme({
-
-         //    file : `${subject}/${octokitConfig.file}`,
-         //    content : callback({
-
-         //       subject : sProps,
-         //       projects : sProps.projects,
-         //       ecosystem : Object.values(sProps.ecosystem).map(i => i.hyperlink)
-
-         //    })
-
-         // });
+         });
 
          // iterate (subject->topics) <
          for (const [topic, tProps] of Object.entries(sProps.ecosystem)) {
 
-            console.log(callback({
+            this.publishReadme({
 
-               topic : tProps,
-               subject : sProps,
-               projects : tProps.projects
+               file : `${subject}/${topic}/${octokitConfig.file}`,
+               content : callback({
 
-            }));
-            console.log('<><><><><><><><>');
+                  topic : tProps,
+                  subject : sProps,
+                  projects : tProps.projects
 
-            // this.publishReadme({
+               })
 
-            //    file : `${subject}/${topic}/${octokitConfig.file}`,
-            //    content : callback({
-
-            //       topic : tProps,
-            //       subject : sProps,
-            //       projects : tProps.projects
-
-            //    })
-
-            // });
+            });
 
          }
 
