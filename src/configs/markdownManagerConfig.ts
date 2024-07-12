@@ -1,5 +1,7 @@
 const markdownManagerConfig: {
 
+   bigBreaker: string,
+   smallBreaker: string,
    splitDelimeter: string,
    splitTargetIndex: number,
    splitExpectedSize: number,
@@ -9,6 +11,8 @@ const markdownManagerConfig: {
 
 } = {
 
+   bigBreaker : '\n\n---\n',
+   smallBreaker : '\n\n# \n',
    splitTargetIndex : 1,
    splitDelimeter : '\n',
    splitExpectedSize : 3,

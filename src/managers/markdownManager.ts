@@ -100,67 +100,49 @@ export default class markdownManager {
 
    }: BuildParams): string {
 
+      var readme: string = '';
       const element: string = (topic ? topic.name : subject.name);
       const resource: string[] = this._elementResources?.[element];
       const description: string = this._elementDescriptions?.[element];
 
-      // add title <
-      var readme: string = `# [${octokitConfig.owner}](${octokitConfig.source})`;
-      readme += `/[${subject.name}](${subject.url})`;
+      readme += [
 
-      console.log(readme); // remove
+         // (title, description, breaker) <
+         `# [${octokitConfig.owner}](${octokitConfig.source})`,
+         topic ? `/[${subject.name}](${subject.url})` : `/${subject.name}`,
+         topic ? `/${topic.name}` : undefined,
+
+         description ? `\n> ${description}` : undefined,
+         markdownConfig.bigBreaker,
+
+         // >
+
+         // (ecosystem, breaker) <
+         ecosystem ? `## Ecosystem\n` : undefined,
+         ecosystem?.join(' '),
+         ecosystem ? markdownConfig.smallBreaker : undefined,
+
+         // >
+
+         // (projects, breaker) <
+         '\n## Projects\n',
+         projects.join(' '),
+         resource ? markdownConfig.smallBreaker : markdownConfig.bigBreaker,
+
+         // >
+
+         // (resources, breaker) <
+         resource ? '\n## Resources\n' : undefined,
+         resource ? resource.join('\n') : undefined,
+         resource ? markdownConfig.bigBreaker : undefined
+
+         // >
+
+      ].join('');
+
 
       // >
 
-      // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-      // const element: string = (topic ? topic : subject);
-      // const resource: string[] = this._elementResources[element];
-      // const description: string = this._elementDescriptions[element];
-
-      // // title, description?, breaker <
-      // readme += `# ${element}\n`;
-      // readme += (description ? `> ${description}\n` : '');
-      // readme += `\n---\n\n`;
-
-      // // >
-
-      // // if (subject) <
-      // if ('ecosystem' in properties) {
-
-      //    var topics: string[] = [];
-      //    for (const t of Object.values(properties['ecosystem'])) {
-
-      //       // topics.push(t['url']);
-
-      //    }
-
-      //    // ecosystem, breaker <
-      //    readme += '## Ecosystem\n';
-      //    readme += `${topics.join('\n')}\n`;
-      //    readme += '\n# \n\n';
-
-      //    // >
-
-      // }
-
-      // // >
-
-      // // projects, breaker <
-      // readme += '## Projects\n';
-      // readme += `${properties['projects'].join('\n')}\n`;
-      // readme += (resource ? '\n# \n\n' : '\n---');
-
-      // // >
-
-      // // resources?, breaker <
-      // readme += (resource ? '## Resources\n' : '');
-      // readme += (resource ? `${resource.join('\n')}\n` : '');
-      // readme += (resource ? '\n---' : '');
-
-      // // >
-
-      var readme: string = '';
       return readme;
 
    }
