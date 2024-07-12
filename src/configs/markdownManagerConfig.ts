@@ -1,3 +1,9 @@
+// import <
+
+
+// >
+
+
 const markdownManagerConfig: {
 
    bigBreaker: string,
@@ -11,14 +17,15 @@ const markdownManagerConfig: {
 
 } = {
 
-   bigBreaker : '\n\n---\n',
-   smallBreaker : '\n\n# \n',
+   bigBreaker : process.env.bigBreaker!,
+   smallBreaker : process.env.smallBreaker!,
+   splitDelimeter : process.env.splitDelimeter!,
+   urlElementResources : process.env.urlElementResources!,
+   urlElementDescriptions : process.env.urlElementDescriptions!,
+
    splitTargetIndex : 1,
-   splitDelimeter : '\n',
    splitExpectedSize : 3,
-   propertyRegexes : {'topic' : /\[`([^`]*)`\]/, 'subject' : /\[\*\*`([^`]*)`\*\*\]/},
-   urlElementResources : 'https://raw.githubusercontent.com/lxRbckl/Project-Landscape/V1/resources/elementResources.json',
-   urlElementDescriptions : 'https://raw.githubusercontent.com/lxRbckl/Project-Landscape/V1/resources/elementDescription.json'
+   propertyRegexes : {'topic' : /\[`([^`]*)`\]/, 'subject' : /\[\*\*`([^`]*)`\*\*\]/}
 
 }
 

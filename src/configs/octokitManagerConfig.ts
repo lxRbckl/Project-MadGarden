@@ -1,3 +1,9 @@
+// import <
+
+
+// >
+
+
 const octokitManagerConfig: {
 
    file: string,
@@ -11,14 +17,14 @@ const octokitManagerConfig: {
 
 } = {
 
-   branch : 'main',
-   owner : 'lxRbckl',
-   file : 'README.md',
-   excludedBranches : [],
-   repository : 'lxRbckl',
-   token : '',
-   source : 'https://github.com/lxRbckl/lxRbckl/tree/main',
-   urlGitHubUsers : 'https://raw.githubusercontent.com/lxRbckl/Project-Heimir/V2/src/data/githubUsers.json'
+   file : process.env.file!,
+   owner : process.env.owner!,
+   token : process.env.token!,
+   branch : process.env.branch!,
+   source : process.env.source!,
+   repository : process.env.repository!,
+   urlGitHubUsers : process.env.urlGitHubUsers!,
+   excludedBranches : process.env.excludedBranches!.split(' ')
 
 }
 

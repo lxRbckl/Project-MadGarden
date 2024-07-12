@@ -2,18 +2,20 @@ FROM node:19.5.0
 
 
 # referencing docker compose <
-ENV publishBranch 'main'
-ENV publishFile 'README.md'
-ENV publishRepository 'lxRbckl'
-ENV publishSource 'https://github.com/lxRbckl/lxRbckl/tree/main'
+ENV splitDelimeter '\n'
+ENV bigBreaker '\n\n---\n'
+ENV smallBreaker '\n\n# \n'
+ENV urlElementResources 'https://raw.githubusercontent.com/lxRbckl/Project-Landscape/V1/resources/elementResources.json'
+ENV urlElementDescriptions 'https://raw.githubusercontent.com/lxRbckl/Project-Landscape/V1/resources/elementDescription.json'
 
-ENV octokitOwner 'lxRbckl'
-ENV octokitToken ''
-ENV octokitExcludedBranches ' '
-
+ENV branch 'main'
+ENV owner 'lxRbckl'
+ENV file 'README.md'
+ENV excludedBranches ''
+ENV repository 'lxRbckl'
+ENV token ''
+ENV source 'https://github.com/lxRbckl/lxRbckl/tree/main'
 ENV urlGitHubUsers 'https://raw.githubusercontent.com/lxRbckl/Project-Heimir/V2/src/data/githubUsers.json'
-ENV urlElementResources 'https://raw.githubusercontent.com/lxRbckl/Project-Landscape/main/src/data/elementResources.json'
-ENV urlElementDescriptions 'https://raw.githubusercontent.com/lxRbckl/Project-Landscape/main/src/data/elementDescription.json'
 
 # >
 
