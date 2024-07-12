@@ -100,12 +100,11 @@ export default class markdownManager {
 
    }: BuildParams): string {
 
-      var readme: string = '';
       const element: string = (topic ? topic.name : subject.name);
       const resource: string[] = this._elementResources?.[element];
       const description: string = this._elementDescriptions?.[element];
 
-      readme += [
+      const readme: string = [
 
          // (title, description, breaker) <
          `# [${octokitConfig.owner}](${octokitConfig.source})`,
