@@ -40,7 +40,7 @@ jobs:
         run: mkdir dist
 
       - name: Compile to JS
-        run: npm run compile
+        run: npm run build
 
       - name: Setup QEMU
         uses: docker/setup-qemu-action@v3
