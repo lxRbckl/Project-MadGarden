@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "lxrbckl": "^9.3.0"
+    "lxrbckl": "^9.3.0",
+    "node-cron": "^3.0.3"
   }
 }
