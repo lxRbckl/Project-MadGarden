@@ -46,10 +46,14 @@ export default class octokitManager {
 
          file : file,
          data : content,
+         displayError : true, // REMOVE
          branch : octokitConfig.branch,
          repository : octokitConfig.repository
 
       });
+
+      console.log(file);
+      console.log('<><><><><><><><><><><>');
 
    }
 
@@ -101,7 +105,7 @@ export default class octokitManager {
    async fetchAllReadme({callback}: FetchAllReadmeParams): Promise<void> {
 
       var url: string = '';
-      for (const u of ['lxRbckl']) { // insert this._sers when DONE
+      for (const u of this._users) {
 
          // update owner property for query //
          this._octokit.owner = u;
@@ -128,8 +132,6 @@ export default class octokitManager {
                }
 
             }
-
-            return undefined; // remove when DONE
 
          }
 
@@ -171,6 +173,7 @@ export default class octokitManager {
                })
 
             });
+            await new Promise(resolve => setTimeout(resolve, 1000));
 
          }
 

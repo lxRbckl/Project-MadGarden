@@ -96,7 +96,7 @@ export default class markdownManager {
       topic,
       subject,
       projects,
-      ecosystem
+      ecosystem = []
 
    }: BuildParams): string {
 
@@ -107,7 +107,7 @@ export default class markdownManager {
       const readme: string = [
 
          // (title, description, breaker) <
-         `# [${octokitConfig.owner}](${octokitConfig.source})`,
+         `# [${octokitConfig.owner}](${octokitConfig.source}/${octokitConfig.file})`,
          topic ? `/[${subject.name}](${subject.url})` : `/${subject.name}`,
          topic ? `/${topic.name}` : undefined,
 
@@ -117,9 +117,9 @@ export default class markdownManager {
          // >
 
          // (ecosystem, breaker) <
-         ecosystem ? `## Ecosystem\n` : undefined,
-         ecosystem?.join(' '),
-         ecosystem ? markdownConfig.smallBreaker : undefined,
+         (ecosystem.length > 0) ? `## Ecosystem\n` : undefined,
+         (ecosystem.length > 0) ? ecosystem?.join(' ') : undefined,
+         (ecosystem.length > 0) ? markdownConfig.smallBreaker : undefined,
 
          // >
 
