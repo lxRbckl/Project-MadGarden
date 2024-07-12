@@ -9,6 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "lxrbckl": "^9.2.4"
+    "lxrbckl": "^9.3.0"
   }
 }

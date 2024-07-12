@@ -29,7 +29,6 @@ import markdownConfig from './src/configs/markdownManagerConfig';
 
    });
 
-
    await octokitHandler.fetchAllReadme({
 
       callback : ({file, hyperlink}) => {

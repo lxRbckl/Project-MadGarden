@@ -46,14 +46,11 @@ export default class octokitManager {
 
          file : file,
          data : content,
-         displayError : true, // REMOVE
+         retryOnError : 5,
          branch : octokitConfig.branch,
          repository : octokitConfig.repository
 
       });
-
-      console.log(file);
-      console.log('<><><><><><><><><><><>');
 
    }
 
@@ -145,7 +142,7 @@ export default class octokitManager {
       // iterate (subjects) <
       for (const [subject, sProps] of Object.entries(data)) {
 
-         this.publishReadme({
+         await this.publishReadme({
 
             file : `${subject}/${octokitConfig.file}`,
             content : callback({
@@ -161,7 +158,7 @@ export default class octokitManager {
          // iterate (subject->topics) <
          for (const [topic, tProps] of Object.entries(sProps.ecosystem)) {
 
-            this.publishReadme({
+            await this.publishReadme({
 
                file : `${subject}/${topic}/${octokitConfig.file}`,
                content : callback({
@@ -173,7 +170,6 @@ export default class octokitManager {
                })
 
             });
-            await new Promise(resolve => setTimeout(resolve, 1000));
 
          }
 
