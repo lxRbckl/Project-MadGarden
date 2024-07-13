@@ -107,9 +107,9 @@ export default class markdownManager {
       const readme: string = [
 
          // (title, description, breaker) <
-         `# [${octokitConfig.owner}](${octokitConfig.source}/${octokitConfig.file})`,
-         topic ? `/[${subject.name}](${subject.url})` : `/${subject.name}`,
-         topic ? `/${topic.name}` : undefined,
+         `# [${octokitConfig.owner}](${octokitConfig.source} / ${octokitConfig.file})`,
+         topic ? ` / [${subject.name}](${subject.url})` : ` / ${subject.name}`,
+         topic ? ` / ${topic.name}` : undefined,
 
          description ? `\n> ${description}` : undefined,
          markdownConfig.bigBreaker,
