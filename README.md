@@ -4,7 +4,7 @@
 ---
 
 [**`TypeScript`**](https://github.com/lxRbckl/lxRbckl/blob/main/TypeScript/README.md)
-[`@octokit rest`](https://github.com/lxRbckl/lxRbckl/blob/main/TypeScript/@octokit-rest.md)
+[`@octokit rest`](https://github.com/lxRbckl/lxRbckl/blob/main/TypeScript/@octokit-rest/README.md)
 [`node-cron`](https://github.com/lxRbckl/lxRbckl/blob/main/TypeScript/node-cron.md)
 [`axios`](https://github.com/lxRbckl/lxRbckl/blob/main/TypeScript/axios.md)
 [**`Docker`**](https://github.com/lxRbckl/lxRbckl/blob/main/Docker/README.md)
