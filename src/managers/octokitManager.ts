@@ -19,18 +19,19 @@ export default class octokitManager {
 
    private _octokit: octokit;
 
-   private readonly _owner: string;
    private readonly _users: string[];
-   private readonly _excludedBranches: string[];
 
 
    constructor({githubUsers}: ConstructorParams) {
 
       this._users = githubUsers;
-      this._owner = octokitConfig.owner;
-      this._excludedBranches = octokitConfig.excludedBranches;
 
-      this._octokit = new octokit({owner : this._owner, token : octokitConfig.token});
+      this._octokit = new octokit({
+         
+         owner : octokitConfig.owner, 
+         token : octokitConfig.token
+      
+      });
 
    }
 
@@ -78,13 +79,12 @@ export default class octokitManager {
 
       });
 
-      return branches.filter(b => !(this._excludedBranches.includes(b)));
+      return branches.filter(b => !((octokitConfig.excludedBranches).includes(b)));
 
    }
 
 
    private async _getReadmeFromBranch(repo: string, branch: string): Promise<string> {
-
 
       let readme: string = await this._octokit.repositoryGet({
 
@@ -104,7 +104,7 @@ export default class octokitManager {
       var url: string = '';
       for (const u of this._users) {
 
-         // update owner property for query //
+         // update octokit property for query //
          this._octokit.owner = u;
 
          const repos: string[] = await this._getReposFromUser(u);
