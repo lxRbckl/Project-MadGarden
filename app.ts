@@ -36,8 +36,8 @@ import markdownConfig from './src/configs/markdownManagerConfig';
 
       // >
 
-      // fetch and add all readme to data <
-      // publish subjects and topics from data <
+      // fetch readme and build data <
+      // publish all elements from data <
       await octokitHandler.fetchAllReadme({
 
          callback : ({file, hyperlink}) => {
