@@ -12,6 +12,7 @@ import {
 
 import octokitConfig from '../configs/octokitManagerConfig';
 import markdownConfig from '../configs/markdownManagerConfig';
+import { octokit } from 'lxrbckl';
 
 // >
 
@@ -33,16 +34,18 @@ export default class markdownManager {
 
    extractProperties({file}: ExtractPropertiesParams): Properties {
 
-      var url: string = '';
-      var hyperlink: string = '';
+      // var url: string = '';
+      // var hyperlink: string = '';
       var properties: Properties = {};
       var currentSubject: string = '';
       for (const line of file.split(markdownConfig.splitDelimeter)) {
 
          for (const [prop, regex] of Object.entries(markdownConfig.propertyRegexes)) {
 
+            let url: string = '';
+            let hyperlink: string = '';
             const result: string[] = line.split(regex);
-            const target: string = result[markdownConfig.splitTargetIndex]?.replace(' ', '-');
+            const current: string = result[markdownConfig.splitTargetIndex]?.replace(' ', '-');
 
             if (result.length == markdownConfig.splitExpectedSize) {
 
@@ -50,14 +53,14 @@ export default class markdownManager {
 
                   case 'subject':
 
-                     currentSubject = target;
+                     currentSubject = current;
                      url = `${octokitConfig.source}/${currentSubject}`;
                      hyperlink = `[\`${currentSubject}\`](${url}/${octokitConfig.file})`;
 
                      properties[currentSubject] = {
                         
                         'url' : url,
-                        'name' : target,
+                        'name' : current,
                         'ecosystem' : {}, 
                         'hyperlink' : hyperlink
                      
@@ -66,13 +69,13 @@ export default class markdownManager {
 
                   case 'topic':
 
-                     url = `${url}/${target}/${octokitConfig.file}`;
-                     hyperlink = `[\`${target}\`](${url})`;
+                     url = `${octokitConfig.source}/${currentSubject}/${current}`;
+                     hyperlink = `[\`${current}\`](${url}/${octokitConfig.file})`;
 
-                     properties[currentSubject]['ecosystem'][target] = {
+                     properties[currentSubject]['ecosystem'][current] = {
 
                         'url' : url,
-                        'name' : target,
+                        'name' : current,
                         'hyperlink' : hyperlink
 
                      };
@@ -81,7 +84,7 @@ export default class markdownManager {
                }
 
             }
-
+      
          }
 
       }
@@ -106,11 +109,14 @@ export default class markdownManager {
 
       const readme: string = [
 
-         // (title, description, breaker) <
-         `# [${octokitConfig.owner}](${octokitConfig.source} / ${octokitConfig.file})`,
-         topic ? ` / [${subject.name}](${subject.url})` : ` / ${subject.name}`,
-         topic ? ` / ${topic.name}` : undefined,
+         // (title, subject, topic) <
+         `# [${octokitConfig.owner}](${octokitConfig.source})`,
+         topic ? `/[${subject.name}](${subject.url})` : `/${subject.name}`,
+         topic ? `/${topic.name}` : undefined,
 
+         // >
+
+         // (description, breaker) <
          description ? `\n> ${description}` : undefined,
          markdownConfig.bigBreaker,
 
@@ -138,7 +144,6 @@ export default class markdownManager {
          // >
 
       ].join('');
-
 
       // >
 

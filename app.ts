@@ -17,7 +17,7 @@ import markdownConfig from './src/configs/markdownManagerConfig';
 
 (async () => {
 
-   // run once a week <
+   // // run once a week <
    cron.schedule('0 0 * * 0', async () => {
 
       // initialize objects <

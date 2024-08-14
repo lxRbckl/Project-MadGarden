@@ -84,5 +84,4 @@ export default class dataManager {
 
    getData(): Data {return this._data;}
 
-
 }

@@ -24,7 +24,8 @@ export default class octokitManager {
 
    constructor({githubUsers}: ConstructorParams) {
 
-      this._users = githubUsers;
+      // this._users = githubUsers;
+      this._users = ['lxRbckl'];
 
       this._octokit = new octokit({
          
