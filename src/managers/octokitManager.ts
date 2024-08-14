@@ -1,7 +1,6 @@
 // import <
 import { octokit } from 'lxrbckl';
 
-import octokitConfig from '../configs/octokitManagerConfig';
 import {
 
    ConstructorParams,
@@ -10,6 +9,7 @@ import {
    PublishAllReadmeParams
 
 } from '../typings/octokitManagerTypes';
+import octokitConfig from '../configs/octokitManagerConfig';
 
 // >
 

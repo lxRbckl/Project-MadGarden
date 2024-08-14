@@ -12,7 +12,6 @@ import {
 
 import octokitConfig from '../configs/octokitManagerConfig';
 import markdownConfig from '../configs/markdownManagerConfig';
-import { octokit } from 'lxrbckl';
 
 // >
 
