@@ -2,6 +2,8 @@ FROM node:19.5.0
 
 
 # referencing docker compose <
+ENV tokenOctokit ${tokenOctokit}
+
 ENV bigBreaker ${bigBreaker}
 ENV smallBreaker ${smallBreaker}
 ENV splitDelimeter ${splitDelimeter}
@@ -10,7 +12,6 @@ ENV urlElementDescriptions ${urlElementDescriptions}
 
 ENV file ${file}
 ENV owner ${owner}
-ENV token ${token}
 ENV branch ${branch}
 ENV source ${source}
 ENV repository ${repository}

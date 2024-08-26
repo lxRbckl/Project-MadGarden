@@ -1,9 +1,3 @@
-// import <
-
-
-// >
-
-
 const octokitManagerConfig: {
 
    file: string,
@@ -17,12 +11,14 @@ const octokitManagerConfig: {
 
 } = {
 
+   token : process.env.tokenOctokit!,
+
    file : process.env.file!,
    owner : process.env.owner!,
-   token : process.env.token!,
    branch : process.env.branch!,
-   source : process.env.source!,
    repository : process.env.repository!,
+
+   source : process.env.source!,
    urlGitHubUsers : process.env.urlGitHubUsers!,
    excludedBranches : process.env.excludedBranches!.split(' ')
 

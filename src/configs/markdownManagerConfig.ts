@@ -1,9 +1,3 @@
-// import <
-
-
-// >
-
-
 const markdownManagerConfig: {
 
    bigBreaker: string,
