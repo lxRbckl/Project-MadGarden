@@ -39,19 +39,21 @@ export default class markdownManager {
 
          for (const [prop, regex] of Object.entries(markdownConfig.propertyRegexes)) {
 
-            console.log('LINE', line); // remove
+            console.log('1. LINE', line); // remove
 
             let url: string = '';
             let hyperlink: string = '';
             const result: string[] = line.split(regex);
 
-            console.log('RESULT', result); // remove
+            console.log('2. RESULT', result); // remove
 
             const current: string = result[markdownConfig.splitTargetIndex]?.replace(' ', '-');
 
-            console.log('CURRENT', current); // remove
+            console.log('3. CURRENT', current); // remove
 
             if (result.length == markdownConfig.splitExpectedSize) {
+
+               console.log('4. LENGTH', result.length); // remove
 
                switch (prop) {
 
@@ -92,6 +94,8 @@ export default class markdownManager {
                }
 
             }
+
+            console.log(' '); // remove
       
          }
 

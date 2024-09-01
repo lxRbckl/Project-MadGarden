@@ -7,7 +7,7 @@ const markdownManagerConfig: {
    splitExpectedSize: number,
    urlElementResources: string,
    urlElementDescriptions: string,
-   propertyRegexes : {'topic': RegExp, 'subject': RegExp}
+   propertyRegexes : {'subject': RegExp, 'topic': RegExp}
 
 } = {
 
@@ -19,7 +19,7 @@ const markdownManagerConfig: {
 
    splitTargetIndex : 1,
    splitExpectedSize : 3,
-   propertyRegexes : {'topic' : /\[`([^`]*)`\]/, 'subject' : /\[\*\*`([^`]*)`\*\*\]/}
+   propertyRegexes : {'subject' : /\[\*\*`([^`]*)`\*\*\]/, 'topic' : /\[`([^`]*)`\]/}
 
 }
 
