@@ -76,10 +76,14 @@ export default class markdownManager {
 
                   case 'topic':
 
-                     console.log('topic'); // remove
+                     console.log('STEP TOPIC 1'); // remove
 
                      url = `${octokitConfig.source}/${currentSubject}/${current}`;
                      hyperlink = `[\`${current}\`](${url}/${octokitConfig.file})`;
+
+                     console.log('URL', url);
+                     console.log('hyperlink', hyperlink);
+                     console.log('STEP TOPIC 2');
 
                      properties[currentSubject]['ecosystem'][current] = {
 
@@ -88,6 +92,10 @@ export default class markdownManager {
                         'hyperlink' : hyperlink
 
                      };
+
+                     console.log(properties);
+
+                     console.log('STEP TOPIC 3');
 
                      console.log('!!!', properties[currentSubject]['ecosystem']); // remove
                      console.log('???', properties[currentSubject]['ecosystem'][current]); // remove
