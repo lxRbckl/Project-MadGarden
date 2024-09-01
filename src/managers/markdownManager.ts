@@ -40,6 +40,8 @@ export default class markdownManager {
       var currentSubject: string = '';
       for (const line of file.split(markdownConfig.splitDelimeter)) {
 
+         console.log(file.split(markdownConfig.splitDelimeter)); // remove
+
          for (const [prop, regex] of Object.entries(markdownConfig.propertyRegexes)) {
 
             let url: string = '';
