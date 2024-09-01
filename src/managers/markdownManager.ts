@@ -88,6 +88,8 @@ export default class markdownManager {
                         'hyperlink' : hyperlink
 
                      };
+
+                     console.log('???', properties[currentSubject]['ecosystem'][current]);
                      break;
 
                }
