@@ -54,11 +54,12 @@ export default class markdownManager {
 
             if (result.length == markdownConfig.splitExpectedSize) {
 
+               console.log('PROP', prop); // remove
                switch (prop) {
 
                   case 'subject':
 
-                     console.log('subject'); // remove
+                     console.log('STEP A SUBJECT'); // remove
 
                      currentSubject = current;
                      url = `${octokitConfig.source}/${currentSubject}`;
@@ -76,7 +77,7 @@ export default class markdownManager {
 
                   case 'topic':
 
-                     console.log('STEP TOPIC 1'); // remove
+                     console.log('STEP B TOPIC'); // remove
 
                      url = `${octokitConfig.source}/${currentSubject}/${current}`;
                      hyperlink = `[\`${current}\`](${url}/${octokitConfig.file})`;
