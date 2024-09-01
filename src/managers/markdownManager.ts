@@ -50,10 +50,9 @@ export default class markdownManager {
             const current: string = result[markdownConfig.splitTargetIndex]?.replace(' ', '-');
 
             console.log('3. CURRENT', current); // remove
+            console.log('4. LENGTH', result.length); // remove
 
             if (result.length == markdownConfig.splitExpectedSize) {
-
-               console.log('4. LENGTH', result.length); // remove
 
                switch (prop) {
 
