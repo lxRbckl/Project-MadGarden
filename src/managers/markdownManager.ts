@@ -89,7 +89,8 @@ export default class markdownManager {
 
                      };
 
-                     console.log('???', properties[currentSubject]['ecosystem'][current]);
+                     console.log('!!!', properties[currentSubject]['ecosystem']); // remove
+                     console.log('???', properties[currentSubject]['ecosystem'][current]); // remove
                      break;
 
                }
