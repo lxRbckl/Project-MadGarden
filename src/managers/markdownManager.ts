@@ -34,6 +34,7 @@ export default class markdownManager {
    extractProperties({file}: ExtractPropertiesParams): Properties {
 
       console.log('delimeter', markdownConfig.splitDelimeter); // remove
+      console.log(typeof markdownConfig.splitDelimeter); // remove
 
       var properties: Properties = {};
       var currentSubject: string = '';
@@ -52,6 +53,8 @@ export default class markdownManager {
 
                   case 'subject':
 
+                     console.log('subject'); // remove
+
                      currentSubject = current;
                      url = `${octokitConfig.source}/${currentSubject}`;
                      hyperlink = `[\`${currentSubject}\`](${url}/${octokitConfig.file})`;
@@ -67,6 +70,8 @@ export default class markdownManager {
                      break;
 
                   case 'topic':
+
+                     console.log('topic'); // remove
 
                      url = `${octokitConfig.source}/${currentSubject}/${current}`;
                      hyperlink = `[\`${current}\`](${url}/${octokitConfig.file})`;
