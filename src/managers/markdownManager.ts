@@ -33,21 +33,23 @@ export default class markdownManager {
 
    extractProperties({file}: ExtractPropertiesParams): Properties {
 
-      console.log('delimeter', markdownConfig.splitDelimeter); // remove
-      console.log(typeof markdownConfig.splitDelimeter); // remove
-
       var properties: Properties = {};
       var currentSubject: string = '';
       for (const line of file.split(markdownConfig.splitDelimeter)) {
 
-         console.log(file.split(markdownConfig.splitDelimeter)); // remove
-
          for (const [prop, regex] of Object.entries(markdownConfig.propertyRegexes)) {
+
+            console.log('LINE', line); // remove
 
             let url: string = '';
             let hyperlink: string = '';
             const result: string[] = line.split(regex);
+
+            console.log('RESULT', result); // remove
+
             const current: string = result[markdownConfig.splitTargetIndex]?.replace(' ', '-');
+
+            console.log('CURRENT', current); // remove
 
             if (result.length == markdownConfig.splitExpectedSize) {
 
