@@ -45,7 +45,7 @@ export default class markdownManager {
             let hyperlink: string = '';
             const result: string[] = line.split(regex);
 
-            console.log('2. RESULT', result); // remove
+            console.log('2. RESULT', prop, result); // remove
 
             const current: string = result[markdownConfig.splitTargetIndex]?.replace(' ', '-');
 
