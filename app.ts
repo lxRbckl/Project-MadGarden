@@ -17,7 +17,7 @@ import markdownConfig from './src/configs/markdownManagerConfig';
 
 (async () => {
 
-   cron.schedule('0 0 * * *', async () => {
+   cron.schedule('0 0 * * 1', async () => {
 
       // initialize objects <
       const dataHandler: dataManager = new dataManager();
