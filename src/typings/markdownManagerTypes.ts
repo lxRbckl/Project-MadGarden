@@ -22,13 +22,6 @@ export interface ConstructorParams {
 }
 
 
-export interface ExtractPropertiesParams {
-
-   file: string;
-
-}
-
-
 export interface PropertyTopic {
 
    'url': string;
@@ -43,11 +36,7 @@ export interface PropertySubject {
    'url': string;
    'name': string;
    'hyperlink': string;
-   'ecosystem': {
-
-      [key: string]: PropertyTopic
-
-   };
+   'ecosystem': {[key: string]: PropertyTopic};
 
 }
 

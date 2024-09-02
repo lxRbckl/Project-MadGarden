@@ -42,15 +42,15 @@ export default class octokitManager {
 
    }: PublishReadmeParams): Promise<void> {
 
-      // await this._octokit.respositorySet({
+      await this._octokit.respositorySet({
 
-      //    file : file,
-      //    data : content,
-      //    retryOnError : 5,
-      //    branch : octokitConfig.branch,
-      //    repository : octokitConfig.repository
+         file : file,
+         data : content,
+         retryOnError : 5,
+         branch : octokitConfig.branch,
+         repository : octokitConfig.repository
 
-      // });
+      });
 
    }
 

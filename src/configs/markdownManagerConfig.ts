@@ -2,9 +2,7 @@ const markdownManagerConfig: {
 
    bigBreaker: string,
    smallBreaker: string,
-   splitDelimeter: string,
-   splitTargetIndex: number,
-   splitExpectedSize: number,
+   fileDelimeter: string,
    urlElementResources: string,
    urlElementDescriptions: string,
    propertyRegexes : {'subject': RegExp, 'topic': RegExp}
@@ -13,12 +11,10 @@ const markdownManagerConfig: {
 
    bigBreaker : process.env.bigBreaker!,
    smallBreaker : process.env.smallBreaker!,
-   splitDelimeter : process.env.splitDelimeter!,
+   fileDelimeter : process.env.fileDelimeter!,
    urlElementResources : process.env.urlElementResources!,
    urlElementDescriptions : process.env.urlElementDescriptions!,
 
-   splitTargetIndex : 1,
-   splitExpectedSize : 3,
    propertyRegexes : {'subject' : /\[\*\*`([^`]*)`\*\*\]/, 'topic' : /\[`([^`]*)`\]/}
 
 }

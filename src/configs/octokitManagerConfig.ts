@@ -1,10 +1,10 @@
 const octokitManagerConfig: {
 
    file: string,
+   tree: string,
    owner: string,
    token: string,
    branch: string,
-   source: string,
    repository: string,
    urlGitHubUsers: string,
    excludedBranches: string[]
@@ -14,11 +14,11 @@ const octokitManagerConfig: {
    token : process.env.tokenOctokit!,
 
    file : process.env.file!,
+   tree : process.env.source!,
    owner : process.env.owner!,
    branch : process.env.branch!,
    repository : process.env.repository!,
-
-   source : process.env.source!,
+   
    urlGitHubUsers : process.env.urlGitHubUsers!,
    excludedBranches : process.env.excludedBranches!.split(' ')
 

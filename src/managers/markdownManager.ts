@@ -5,8 +5,7 @@ import {
    BuildParams,
    ElementResources,
    ConstructorParams,
-   ElementDescriptions,
-   ExtractPropertiesParams
+   ElementDescriptions
 
 } from '../typings/markdownManagerTypes';
 
@@ -31,83 +30,43 @@ export default class markdownManager {
    }
 
 
-   extractProperties({file}: ExtractPropertiesParams): Properties {
+   extractProperties(file: string): Properties {
 
       var properties: Properties = {};
       var currentSubject: string = '';
-      for (const line of file.split(markdownConfig.splitDelimeter)) {
+      var extractedProperty: string = '';
+      for (const line of file.split(markdownConfig.fileDelimeter)) {
 
-         for (const [prop, regex] of Object.entries(markdownConfig.propertyRegexes)) {
+         if (markdownConfig.propertyRegexes['subject'].test(line)) {
 
-            console.log('1. LINE', line); // remove
+            extractedProperty = line.split(markdownConfig.propertyRegexes['subject'])[1];
+            extractedProperty = extractedProperty.replace(' ', '-');
+            currentSubject = extractedProperty;
 
-            let url: string = '';
-            let hyperlink: string = '';
-            const result: string[] = line.split(regex);
+            properties[currentSubject] = {
 
-            console.log('2. RESULT', prop, result); // remove
+               'ecosystem' : {},
+               'hyperlink' : line,
+               'name' : extractedProperty,
+               'url' : `${octokitConfig.tree}/${extractedProperty}`
 
-            const current: string = result[markdownConfig.splitTargetIndex]?.replace(' ', '-');
+            };
 
-            console.log('3. CURRENT', current); // remove
-            console.log('4. LENGTH', result.length); // remove
+         }
 
-            if (result.length == markdownConfig.splitExpectedSize) {
+         if (markdownConfig.propertyRegexes['topic'].test(line)) {
 
-               console.log('PROP', prop); // remove
-               switch (prop) {
+            extractedProperty = line.split(markdownConfig.propertyRegexes['topic'])[1];
+            extractedProperty = extractedProperty.replace(' ', '-');
 
-                  case 'subject':
+            properties[currentSubject]['ecosystem'][extractedProperty] = {
 
-                     console.log('STEP A SUBJECT'); // remove
+               'hyperlink' : line,
+               'name' : extractedProperty,
+               'url' : `${octokitConfig.tree}/${currentSubject}/${extractedProperty}`
 
-                     currentSubject = current;
-                     url = `${octokitConfig.source}/${currentSubject}`;
-                     hyperlink = `[\`${currentSubject}\`](${url}/${octokitConfig.file})`;
+            };
 
-                     properties[currentSubject] = {
-                        
-                        'url' : url,
-                        'name' : current,
-                        'ecosystem' : {}, 
-                        'hyperlink' : hyperlink
-                     
-                     };
-                     break;
-
-                  case 'topic':
-
-                     console.log('STEP B TOPIC'); // remove
-
-                     url = `${octokitConfig.source}/${currentSubject}/${current}`;
-                     hyperlink = `[\`${current}\`](${url}/${octokitConfig.file})`;
-
-                     console.log('URL', url);
-                     console.log('hyperlink', hyperlink);
-                     console.log('STEP TOPIC 2');
-
-                     properties[currentSubject]['ecosystem'][current] = {
-
-                        'url' : url,
-                        'name' : current,
-                        'hyperlink' : hyperlink
-
-                     };
-
-                     console.log(properties);
-
-                     console.log('STEP TOPIC 3');
-
-                     console.log('!!!', properties[currentSubject]['ecosystem']); // remove
-                     console.log('???', properties[currentSubject]['ecosystem'][current]); // remove
-                     break;
-
-               }
-
-            }
-
-            console.log(' '); // remove
-      
          }
 
       }
@@ -133,7 +92,7 @@ export default class markdownManager {
       const readme: string = [
 
          // (title, subject, topic) <
-         `# [${octokitConfig.owner}](${octokitConfig.source})`,
+         `# [${octokitConfig.owner}](${octokitConfig.tree})`,
          topic ? `/[${subject.name}](${subject.url})` : `/${subject.name}`,
          topic ? `/${topic.name}` : undefined,
 
