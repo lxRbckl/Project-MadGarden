@@ -14,7 +14,7 @@ const octokitManagerConfig: {
    token : process.env.tokenOctokit!,
 
    file : process.env.file!,
-   tree : process.env.source!,
+   tree : process.env.tree!,
    owner : process.env.owner!,
    branch : process.env.branch!,
    repository : process.env.repository!,
