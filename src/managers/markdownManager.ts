@@ -32,6 +32,7 @@ export default class markdownManager {
 
    extractProperties(file: string): Properties {
 
+      var url: string = '';
       var properties: Properties = {};
       var currentSubject: string = '';
       var extractedProperty: string = '';
@@ -43,12 +44,14 @@ export default class markdownManager {
             extractedProperty = extractedProperty.replace(' ', '-');
             currentSubject = extractedProperty;
 
+            url = `${octokitConfig.tree}/${extractedProperty}`;
+
             properties[currentSubject] = {
 
+               'url' : url,
                'ecosystem' : {},
-               'hyperlink' : line,
                'name' : extractedProperty,
-               'url' : `${octokitConfig.tree}/${extractedProperty}`
+               'hyperlink' : `[${extractedProperty}](${url})`
 
             };
 
@@ -59,11 +62,13 @@ export default class markdownManager {
             extractedProperty = line.split(markdownConfig.propertyRegexes['topic'])[1];
             extractedProperty = extractedProperty.replace(' ', '-');
 
+            url = `${octokitConfig.tree}/${currentSubject}/${extractedProperty}`;
+
             properties[currentSubject]['ecosystem'][extractedProperty] = {
 
-               'hyperlink' : line,
+               'url' : url,
                'name' : extractedProperty,
-               'url' : `${octokitConfig.tree}/${currentSubject}/${extractedProperty}`
+               'hyperlink' : `[${extractedProperty}](${url})`
 
             };
 
@@ -112,8 +117,8 @@ export default class markdownManager {
          // >
 
          // (projects, breaker) <
-         '\n## Experience\n',
-         projects.join(' '),
+         (projects.length > 0) ? '## Experience\n' : undefined,
+         (projects.length > 0) ? projects.join(' ') : undefined,
          resource ? markdownConfig.smallBreaker : markdownConfig.bigBreaker,
 
          // >
