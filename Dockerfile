@@ -1,7 +1,7 @@
 FROM node:19.5.0
 
 
-# referencing docker compose <
+# referencing docker compose, otherwise override <
 ENV tokenOctokit ${tokenOctokit}
 
 ENV file ${file}
@@ -12,9 +12,6 @@ ENV repository ${repository}
 ENV urlGitHubUsers ${urlGitHubUsers}
 ENV excludedBranches ${excludedBranches}
 
-ENV bigBreaker ${bigBreaker}
-ENV smallBreaker ${smallBreaker}
-ENV fileDelimeter ${fileDelimeter}
 ENV urlElementResources ${urlElementResources}
 ENV urlElementDescriptions ${urlElementDescriptions}
 

@@ -17,7 +17,6 @@ import markdownConfig from '../configs/markdownManagerConfig';
 
 export default class markdownManager {
 
-
    private readonly _elementResources: ElementResources;
    private readonly _elementDescriptions: ElementDescriptions;
 
@@ -36,6 +35,7 @@ export default class markdownManager {
       var properties: Properties = {};
       var currentSubject: string = '';
       var extractedProperty: string = '';
+
       for (const line of file.split(markdownConfig.fileDelimeter)) {
 
          if (markdownConfig.propertyRegexes['subject'].test(line)) {
@@ -68,7 +68,7 @@ export default class markdownManager {
 
                'url' : url,
                'name' : extractedProperty,
-               'hyperlink' : `[${extractedProperty}](${url})`
+               'hyperlink' : `[\`${extractedProperty}\`](${url})`
 
             };
 
@@ -94,47 +94,39 @@ export default class markdownManager {
       const resource: string[] = this._elementResources?.[element];
       const description: string = this._elementDescriptions?.[element];
 
-      const readme: string = [
+      return [
 
-         // (title, subject, topic) <
-         `# [${octokitConfig.owner}](${octokitConfig.tree})`,
-         topic ? `/[${subject.name}](${subject.url})` : `/${subject.name}`,
-         topic ? `/${topic.name}` : undefined,
-
-         // >
-
-         // (description, breaker) <
-         description ? `\n> ${description}` : undefined,
+         // header <
+         `# [${octokitConfig.owner}](${octokitConfig.tree})`
+         + (topic ? `/[${subject.name}](${subject.url})` : `/${subject.name}`)
+         + (topic ? `/${topic.name}` : ''),
+         description ? `\n> ${description}` : '',
          markdownConfig.bigBreaker,
 
          // >
 
-         // (ecosystem, breaker) <
-         (ecosystem.length > 0) ? `## Ecosystem\n` : undefined,
-         (ecosystem.length > 0) ? ecosystem?.join(' ') : undefined,
-         (ecosystem.length > 0) ? markdownConfig.smallBreaker : undefined,
+         // ecosystem? <
+         (ecosystem.length > 0) ? '## Ecosystem\n\n' : '',
+         (ecosystem.length > 0) ? ecosystem?.join(' ') : '',
+         (ecosystem.length > 0) ? markdownConfig.smallBreaker : '',
 
          // >
 
-         // (projects, breaker) <
-         (projects.length > 0) ? '## Experience\n' : undefined,
-         (projects.length > 0) ? projects.join(' ') : undefined,
-         resource ? markdownConfig.smallBreaker : markdownConfig.bigBreaker,
+         // experience? <
+         (projects.length > 0) ? '## Experience\n\n' : '',
+         (projects.length > 0) ? projects.join(' ') : '',
+         resource ? markdownConfig.smallBreaker : '',
 
          // >
 
-         // (resources, breaker) <
-         resource ? '\n## Resources\n' : undefined,
-         resource ? resource.join('\n') : undefined,
-         resource ? markdownConfig.bigBreaker : undefined
+         // footer <
+         resource ? '## Resources' : '',
+         resource ? resource.join('\n') : '',
+         `\n${markdownConfig.bigBreaker}`
 
          // >
 
-      ].join('');
-
-      // >
-
-      return readme;
+      ].join('\n');
 
    }
 

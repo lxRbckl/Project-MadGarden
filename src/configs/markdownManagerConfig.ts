@@ -9,9 +9,9 @@ const markdownManagerConfig: {
 
 } = {
 
-   bigBreaker : process.env.bigBreaker!,
-   smallBreaker : process.env.smallBreaker!,
-   fileDelimeter : process.env.fileDelimeter!,
+   bigBreaker : '---',
+   smallBreaker : '# ',
+   fileDelimeter : '\n',
    urlElementResources : process.env.urlElementResources!,
    urlElementDescriptions : process.env.urlElementDescriptions!,
 

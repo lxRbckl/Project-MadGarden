@@ -64,7 +64,8 @@ export default class dataManager {
 
             // >
 
-            // add project->readme to subject->ecosystem->topic->projects //
+            // add properties to subject->ecosystem->topic->projects //
+
             this._data[subject]['ecosystem'][t]['projects'].push(readmeHyperlink);
 
          }
@@ -72,6 +73,7 @@ export default class dataManager {
          // >
          
       }
+
 
    }
 
@@ -84,4 +86,5 @@ export default class dataManager {
 
    getData(): Data {return this._data;}
 
+   
 }
